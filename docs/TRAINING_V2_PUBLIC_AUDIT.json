@@ -1,0 +1,9 @@
+{
+  "notebook": "notebooks/05_EndekGAN_T2I_Train_Preprocessed_Crop_V2.ipynb",
+  "code_files": 5,
+  "gallery_output_redacted": 1,
+  "raw_images_uploaded": 0,
+  "source_prompts_or_private_image_manifest_uploaded": 0,
+  "old_or_new_checkpoint_weights_uploaded": 0,
+  "training_status": "NOT_STARTED"
+}

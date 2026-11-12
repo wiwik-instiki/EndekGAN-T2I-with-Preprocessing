@@ -1,3 +1,7 @@
+## Full training after new preprocessing
+
+Open [the V2 GAN training notebook](notebooks/05_EndekGAN_T2I_Train_Preprocessed_Crop_V2.ipynb) and [training instructions](docs/TRAINING_V2_README.md). Main dataset B has 1280 training files with crop ablation; control A has 944. Validation/test sources are shared. Model training is not yet complete; the notebook includes actual train/evaluate/generate code and checks CUDA availability.
+
 ## New pre-experiment preprocessing notebook (V2)
 
 The new [EndekGAN-T2I Preprocessing BEFORE Training V2 notebook](notebooks/01_EndekGAN_T2I_Preprocessing_BEFORE_Training_V2.ipynb) contains the source/audit pipeline, full-frame resize, cropping exploration, photometric augmentation, two separate training-manifest treatments, source-level leakage checks and a preprocessing flowchart. It has been executed locally using the D-only research kernel (13 code cells; 4 figures; no errors).
