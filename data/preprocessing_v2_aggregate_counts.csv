@@ -1,0 +1,3 @@
+arm,train,validation,test,total_files,independent_external_sources_added,status
+A_full_image_augmented,944,37,37,1018,0,preprocessing_manifest_ready
+B_crop_ablation,1280,37,37,1354,0,experimental_crop_treatment

@@ -1,3 +1,11 @@
+## New pre-experiment preprocessing notebook (V2)
+
+The new [EndekGAN-T2I Preprocessing BEFORE Training V2 notebook](notebooks/01_EndekGAN_T2I_Preprocessing_BEFORE_Training_V2.ipynb) contains the source/audit pipeline, full-frame resize, cropping exploration, photometric augmentation, two separate training-manifest treatments, source-level leakage checks and a preprocessing flowchart. It has been executed locally using the D-only research kernel (13 code cells; 4 figures; no errors).
+
+**Important:** A (944 train / 37 validation / 37 test) and B (1280 train / 37 validation / 37 test) are preprocessing *file counts*, not counts of newly acquired independent real Endek motifs. B is a crop ablation with source-inherited prompts and unverified crop-level semantic alignment. No external dataset photos from Mendeley or Roboflow were available for ingestion when this notebook was executed; a final expanded source dataset has not been established. Expert review is planned for the generated Endek images at the end of the model experiment.
+
+See [V2 preprocessing documentation](docs/PRE_EXPERIMENT_PREPROCESSING_V2.md) and [aggregate counts](data/preprocessing_v2_aggregate_counts.csv).
+
 # EndekGAN-T2I with Preprocessing
 
 **Dataset and preprocessing audit for Balinese Endek motif Text-to-Image GAN research.**
