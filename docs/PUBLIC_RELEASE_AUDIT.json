@@ -1,0 +1,13 @@
+{
+  "notebook": "notebooks/01_Endek_Dataset_Preprocessing_Audit.ipynb",
+  "notebook_cells": 24,
+  "original_execution_success": true,
+  "original_executed_code_cells": 12,
+  "public_rendered_figures": 3,
+  "image_galleries_redacted": 2,
+  "image_sources_copied": 0,
+  "preprocessing_scripts": 4,
+  "source_data_independent_images": 370,
+  "final_augmented_files_private": 1018,
+  "reason_gallery_removed": "Do not publish images from a private Endek research dataset without image-release clearance."
+}

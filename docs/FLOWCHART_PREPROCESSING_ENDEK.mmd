@@ -1,0 +1,28 @@
+flowchart TD
+  A["370 gambar Endek asli (512 x 512)\nFlora 147 | Fauna 53 | Dekoratif 112 | Geometris 58"]
+  B["Audit sumber\nValidasi file + SHA-256 (0 duplikat identik)"]
+  C["Skrining kemiripan visual dHash\nKoreksi pasangan Flora yang sangat mirip"]
+  D["Split per gambar sumber\nTrain 296 | Validation 37 | Test 37\nSeed 3407; revisi split untuk cegah leakage"]
+  E["Resize SEMUA gambar utuh\n512 x 512 ke 256 x 256 (Lanczos)\nTANPA cropping"]
+  F{"Bagian data?"}
+  G["Training: 296 gambar sumber"]
+  H["Validation: 37 gambar\nTanpa augmentasi"]
+  I["Testing: 37 gambar\nTanpa augmentasi"]
+  J["Augmentasi HANYA training\nBrightness / Contrast / Saturation / Sharpness\nSeed deterministik"]
+  K["Penyeimbangan per kelas\nFlora 236 | Fauna 236\nDekoratif 236 | Geometris 236"]
+  L["Training akhir: 944 file\n296 asli yang di-resize + 648 varian"]
+  M["Quality assurance\nAudit 1.018 file | 0 duplikat identik\n0 sumber lintas-split | manifest & asal gambar"]
+  N["Output ENDEK_AUGMENTED_V1\nTrain 944 | Val 37 | Test 37\nSiap untuk UJI training, belum dilatih GAN"]
+  A --> B --> C --> D --> E --> F
+  F -->|"Train"| G --> J --> K --> L --> M
+  F -->|"Validation"| H --> M
+  F -->|"Test"| I --> M
+  M --> N
+  classDef source fill:#eaf2ff,stroke:#335c99,color:#19365c
+  classDef processing fill:#e8f6ed,stroke:#39734e,color:#18482c
+  classDef caution fill:#fff4d8,stroke:#b18b2f,color:#62490a
+  classDef output fill:#edf0fa,stroke:#575f9b,color:#242c5f
+  class A,D source
+  class B,C,E,G,J,K,L processing
+  class F,H,I caution
+  class M,N output

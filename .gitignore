@@ -1,0 +1,19 @@
+# Do not publish Endek images, raw provenance data, checkpoints or archives.
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.zip
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+metadata*.csv
+augmentation_manifest.csv
+source_split_*.csv
+ENDEK_Dataset/
+ENDEK_AUGMENTED_V1/
+*.log

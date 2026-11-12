@@ -1,0 +1,5 @@
+motif_class,original_sources,train_sources,augmented_train_variants,train_files_total,validation,test
+Flora,147,118,118,236,14,15
+Fauna,53,42,194,236,6,5
+Decorative,112,90,146,236,11,11
+Geometric,58,46,190,236,6,6
