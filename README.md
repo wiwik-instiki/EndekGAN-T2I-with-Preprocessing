@@ -1,84 +1,49 @@
-## Full training after new preprocessing
-
-Open [the V2 GAN training notebook](notebooks/05_EndekGAN_T2I_Train_Preprocessed_Crop_V2.ipynb) and [training instructions](docs/TRAINING_V2_README.md). Main dataset B has 1280 training files with crop ablation; control A has 944. Validation/test sources are shared. Model training is not yet complete; the notebook includes actual train/evaluate/generate code and checks CUDA availability.
-
-## New pre-experiment preprocessing notebook (V2)
-
-The new [EndekGAN-T2I Preprocessing BEFORE Training V2 notebook](notebooks/01_EndekGAN_T2I_Preprocessing_BEFORE_Training_V2.ipynb) contains the source/audit pipeline, full-frame resize, cropping exploration, photometric augmentation, two separate training-manifest treatments, source-level leakage checks and a preprocessing flowchart. It has been executed locally using the D-only research kernel (13 code cells; 4 figures; no errors).
-
-**Important:** A (944 train / 37 validation / 37 test) and B (1280 train / 37 validation / 37 test) are preprocessing *file counts*, not counts of newly acquired independent real Endek motifs. B is a crop ablation with source-inherited prompts and unverified crop-level semantic alignment. No external dataset photos from Mendeley or Roboflow were available for ingestion when this notebook was executed; a final expanded source dataset has not been established. Expert review is planned for the generated Endek images at the end of the model experiment.
-
-See [V2 preprocessing documentation](docs/PRE_EXPERIMENT_PREPROCESSING_V2.md) and [aggregate counts](data/preprocessing_v2_aggregate_counts.csv).
-
 # EndekGAN-T2I with Preprocessing
 
-**Dataset and preprocessing audit for Balinese Endek motif Text-to-Image GAN research.**
+**New preprocessing-to-training research workflow for generating Balinese Endek motifs from text prompts.**
 
-This repository accompanies the original research code at [wiwik-instiki/EndekGAN-T2I](https://github.com/wiwik-instiki/EndekGAN-T2I).
-It focuses on source-image auditing, full-image resizing, class-balanced photometric augmentation, and exploratory cropping comparisons. **The Text-to-Image GAN objective is unchanged.**
+This repository documents the new experimental dataset treatments, preprocessing audit, training code, and reproducible evaluation. It is separate from the earlier [EndekGAN-T2I research repository](https://github.com/wiwik-instiki/EndekGAN-T2I). **No previously trained GAN checkpoint is reused for the new experiment.**
 
-## Notebook
+## Active Jupyter notebooks — only two
 
-[**Open: 01_Endek_Dataset_Preprocessing_Audit.ipynb**](notebooks/01_Endek_Dataset_Preprocessing_Audit.ipynb)
+1. [**01 — Preprocessing BEFORE Training V2**](notebooks/01_EndekGAN_T2I_Preprocessing_BEFORE_Training_V2.ipynb): source inventory, external-dataset admission audit, duplicate screening, four-class mapping, resize, crop exploration, photometric augmentation, source-aware splits, image–prompt checks, distribution tables and preprocessing flowchart.
+2. [**05 — Train Preprocessed Crop V2**](notebooks/05_EndekGAN_T2I_Train_Preprocessed_Crop_V2.ipynb): data validation, genuine new GAN training, controls, GPU checks, checkpoint management, model evaluation, and text-prompt image generation.
 
-The executed notebook presents:
-- Four source motif classes (flora, fauna, decorative, geometric).
-- Original **512 × 512**, full-image resize **256 × 256**, and **exploratory** 384 × 384 center/texture-selected cropping (then resize to 256 × 256).
-- Train-only, mild adjustments to brightness, contrast, saturation and sharpness.
-- Distribution charts before and after augmentation.
-- Source-level train/validation/test integrity checks, Text-to-Image prompt associations and preprocessing flowchart.
+The earlier preliminary dataset-audit notebook has been superseded and removed from the active repository. The prior version remains accessible in Git history.
 
-**Image publication policy:** The public notebook deliberately omits two rendered galleries containing original Endek image pixels. Those cells remain executable and display all galleries when the notebook is run with an authorized local copy of the dataset. Non-photographic charts and the flowchart remain visible on GitHub. No raw or augmented image files are distributed here.
+## Experimental dataset arms
 
-## Verified counts
+| Arm | Training image files | Validation | Testing | Purpose |
+|---|---:|---:|---:|---|
+| **B — full image + photometric augmentation + crop** | **1,280** | **37** | **37** | Main experimental preprocessing treatment; 320 training files per motif class |
+| **A — full image + photometric augmentation** | **944** | **37** | **37** | Matched no-crop control |
 
-| Motif class | Independent source images | Original train | Augmented train variants | Train files | Validation | Test |
-|---|---:|---:|---:|---:|---:|---:|
-| Flora | 147 | 118 | 118 | 236 | 14 | 15 |
-| Fauna | 53 | 42 | 194 | 236 | 6 | 5 |
-| Decorative | 112 | 90 | 146 | 236 | 11 | 11 |
-| Geometric | 58 | 46 | 190 | 236 | 6 | 6 |
-| **Total** | **370** | **296** | **648** | **944** | **37** | **37** |
+The four motif classes are flora, fauna, dekoratif and geometris. Validation and testing consist of the same held-out source records for A and B, with no cropping or training augmentations.
 
-Total processed files: **1,018 = 944 train + 37 validation + 37 test**. This is **not 1,018 distinct independent motifs**; augmentations inherit 296 training sources and their text prompts.
+**Interpretation:** These numbers count processed files, not independently acquired motif photographs. The 336 extra images in B are training-only heuristic crop candidates derived from existing sources. Their inherited whole-image prompts have not been independently verified at crop level. The experiment therefore tests cropping as an *ablation factor*; it does not presume improved semantic accuracy.
 
-## Methodological distinction: resize vs crop
+External sources under evaluation include [Mendeley Multimodal Endek](https://data.mendeley.com/datasets/52ffyj9x3c/1), [Mendeley Endek GAN](https://data.mendeley.com/datasets/9jwns77cg5/1), and the [Roboflow annotated Endek project](https://universe.roboflow.com/ayu-menuh-rhmpz/endek-dataset-anoted-multi-iobno). Their image archives were **not** successfully incorporated when these notebooks were prepared. Expanding the dataset requires license/provenance checking, deduplication, prompt mapping, and a new group-aware source split.
 
-The **actual V1 training dataset** was created using full-frame resize from 512 × 512 to 256 × 256 (Lanczos) plus small photometric perturbations on training images. **Cropping was NOT included in the final V1 training set**; the notebook uses pilot coordinates to illustrate potential differences in ornament composition, not claim motif-aware segmentation. Source splitting precedes augmentation. A near-identical pair of flora images was kept within the same split, so this is a **new experimental split** despite the same 296/37/37 class totals as the prior paper.
+## Run locally on the research Windows PC
 
-Text-to-Image prompt/image mappings were inherited from the 370-record source CSV. Prompt text is not changed by preprocessing. These metadata descriptions have not been independently verified against every source image; assessment by Endek experts is planned at the **final stage on AI-generated motifs**.
+- **Research project:** `D:\DISERTASI_S3\WIWIK\EXPERIMEN_2\ENDEK_T2I_EXPERIMENT_V2`
+- **Dataset manifests:** `D:\DISERTASI_S3\WIWIK\EXPERIMEN_2\ENDEK_PREPROCESSING_V2\arms`
+- **Engine-compatible splits:** `TRAINING_SPLITS_PREPROCESSED_V2` (inside the experiment folder)
+- **Python interpreter and all research packages:** `D:\VSCode-MultiAgent-AI\envs\endekgan-t2i-v2-py311\Scripts\python.exe`
+- **VS Code kernel:** `Python 3.11 (EndekGAN-T2I V2 | D:)`
 
-## Run locally
+Run the preprocessing notebook first to audit the data, then open the training notebook. Use the [training guide](docs/TRAINING_V2_README.md) and isolated [CUDA installation script](setup/INSTALL_CUDA_PYTORCH_ON_D_FOR_V2.cmd) if compatible GPU packages are needed. Full GPU training is guarded by an explicit `TRAIN_NOW=True` switch and free-VRAM checks; `Run All` performs a safe preflight by default.
 
-1. Obtain the authorized Endek source images and derived \`ENDEK_AUGMENTED_V1\` data privately. They are **not** included in this public repository.
-2. Install Python 3.10+ and the packages in [requirements-notebook.txt](requirements-notebook.txt).
-3. Set \`ENDEKGAN_EXPERIMENT_ROOT\` to the directory that contains \`ENDEK_Dataset\`, \`ENDEK_AUGMENTED_V1\`, and \`ENDEK_T2I_EXPERIMENT_V2\`. The default in the notebook refers to the research PC's original D: location.
-4. Open the notebook in VS Code or Jupyter and run from top to bottom.
+## Experimental plan and current status
 
-The notebook expects the private files \`ENDEK_AUGMENTED_V1/metadata_expert_guided_T2I_augmented_V1.csv\`, \`augmentation_manifest.csv\`, \`PILOT_AUDIT_ARCHIVE_20261112.zip\` (for pilot crop coordinates), and \`FLOWCHART_PREPROCESSING_ENDEK.png\`.
-For other setups, adjust paths and ensure the dataset and source metadata were prepared using the scripts.
+- Six original internal GAN configurations across seeds 42, 123, and 2025 on B, plus no-crop controls on A, with equal sampled items and optimizer updates per epoch.
+- Text-to-Image conditioning uses the prompt CSV; the proposed method retains Transformer conditioning and seam-aware regularization from the prior architecture.
+- New training begins from random weights. Validation KID is for checkpoint selection; small held-out test-set FID/KID results must be interpreted cautiously.
+- Experts will evaluate **AI-generated motif designs** at the final stage.
+- **Preprocessing and notebook preflight have passed. Full V2 training and model evaluation have not started** because CUDA PyTorch is absent from the selected D environment and available GPU VRAM was below the safety threshold at the last inspection.
 
-## Repository structure
+## Repository data and code
 
-\`\`\`text
-notebooks/01_Endek_Dataset_Preprocessing_Audit.ipynb
-scripts/generate_endek_augmentation.py
-scripts/verify_and_map_T2I_metadata.py
-scripts/augmentation_quality_audit.py
-scripts/prepare_experiment_v2.py
-docs/FLOWCHART_PREPROCESSING_ENDEK.mmd
-docs/METHODOLOGY.md
-data/dataset_aggregate_counts.csv
-requirements-notebook.txt
-README.md
-\`\`\`
+The repository includes `notebooks/`, `scripts/`, `setup/`, `docs/`, and aggregate information in `data/`. Actual source photographs, derived image files, private image–prompt CSV manifests, and trained `.pth` weights are **not** publicly distributed. Authorized local files are required to reproduce the study.
 
-## Reproducibility and limitations
-
-- Original source images, metadata with per-image prompts, generated augmented image files, checkpoint weights, and local audit archives are **not publicly distributed**.
-- The source-level split was modified to reduce potential leakage between visually similar images. The new results cannot be attributed to preprocessing alone unless compared on the **same** revised split.
-- Class balancing increases training **file count**, not the number of independent real motifs.
-- Neither faster GAN training, improved FID/KID, stronger prompt adherence, nor expert-approved cultural validity has yet been demonstrated by this preprocessing notebook. Quantitative GAN training is a separate experimental phase.
-- Image copyrights and cultural provenance must be reviewed before releasing the actual dataset or image galleries.
-
-The dataset documentation notebook was executed locally end-to-end: **12 code cells passed, 5 figures generated, zero execution errors**. The two Endek-photo galleries were subsequently redacted only in this public copy.
+For method and source-audit details, see [preprocessing documentation](docs/PRE_EXPERIMENT_PREPROCESSING_V2.md), [training instructions](docs/TRAINING_V2_README.md), and [dataset methodology notes](docs/METHODOLOGY.md).
