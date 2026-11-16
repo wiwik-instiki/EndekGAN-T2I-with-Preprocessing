@@ -13,12 +13,17 @@
   "B_derived_training_files": 1280,
   "B_crops": 336,
   "B_seam_seed42_test_status": "EVALUATION_COMPLETE",
-  "other_23_V2_tests": "NOT_COMPLETED",
   "TiPGAN_V2": "NOT_TRAINED",
   "DFGAN_V2": "NOT_TRAINED",
   "raw_photographs_uploaded": 0,
   "private_prompts_uploaded": 0,
   "weights_uploaded": 0,
   "public_analytical_figures": 8,
-  "warning": "FID and KID from 37 real test images are exploratory; trained models not necessarily visually good"
+  "warning": "FID and KID from 37 real test images are exploratory; trained models not necessarily visually good",
+  "V2_heldout_test_evaluated": [
+    "B/transformer/seed42",
+    "B/seam_proposed/seed42"
+  ],
+  "other_22_V2_tests": "NOT_COMPLETED",
+  "actual_two_way_matched_figures": 3
 }

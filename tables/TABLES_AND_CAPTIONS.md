@@ -63,7 +63,7 @@ Table 3 reports checkpoint-selection KID, NOT independent test-set performance.
 **Table 3.** Mean ± sample SD across three training seeds; validation n=37.
 
 ## Table 4. Available exploratory test scores
-Table 4 contains results from only ONE completed evaluation, not all 24 models.
+Table 4 preserves the first proposed-only test evaluation; matched comparisons are shown in Table 5 when completed.
 
 | Test model | Class | FID | KID | Real n | Fake n |
 |---|---|---:|---:|---:|---:|
@@ -82,6 +82,18 @@ Figures 1–8 are derived from actual V2 data; qualitative comparisons (when pre
 - Figure 3: paired transformer/seam-proposed validation ablation by seed and preprocessing arm.
 - Figures 4–6: proposed model training generator, discriminator and seam loss.
 - Figure 7: proposed model validation KID trajectory by seed.
-- Figure 8: exploratory test KID for only the one evaluated V2 model.
+- Figure 8: exploratory test KID for the first proposed-only held-out evaluation.
 
-**Limitations:** 370 independent raw images total, 296 training sources, unchanged 37 val and 37 test images. The extra derived files (944 vs 1280) are not new independent motif images. Crop prompts lack independent semantic validation. External source images and independent external model evaluations were not added to this V2 training matrix. No verified expert study or independent test scores for the other 23 runs are claimed.
+**Limitations:** 370 independent raw images total, 296 training sources, unchanged 37 val and 37 test images. The extra derived files (944 vs 1280) are not new independent motif images. Crop prompts lack independent semantic validation. External source images and independent external model evaluations were not added to this V2 training matrix. No verified expert study or complete three-seed model test comparison is claimed.
+
+## Table 5. Matched two-model held-out V2 test (seed 42)
+Same 37 real references, source-group split, fixed prompt samples and latent seed 90731. Test metrics are exploratory.
+| Model | Pooled FID | Pooled KID | Class-macro FID | Class-macro KID | Mean opposite-border gap |
+|---|---:|---:|---:|---:|---:|
+| transformer | 247.819 | 0.111622 | 311.429 | 0.205214 | 0.079515 |
+| seam_proposed | 302.471 | 0.192888 | 360.429 | 0.365146 | 0.052456 |
+
+**Table 5.** TiPGAN and DF-GAN were NOT evaluated on V2; these rows are internal V2 model comparisons.
+**Figure 9.** Model-generated examples at matching prompt/index/latent seed (seed 42).
+**Figure 10.** Matched 2 x 2 repeated-tile preview of generated outputs.
+**Figure 11.** One-seed matched per-class test KID.

@@ -54,12 +54,12 @@ Data audit output: [dataset_independence_audit.csv](results/dataset_independence
 | **Training** 6 B-arm configurations × 3 seeds, plus 2 A-arm configurations × 3 seeds | **24 / 24 completed** on new V2 weights | [24-run log](results/all_24_runs.csv) |
 | Best and last checkpoint availability / epoch and validation log consistency | **24 / 24 verified locally** | [Audit summary](results/EVIDENCE_STATUS.json) |
 | Three-seed **validation KID** only, used for checkpoint selection | Completed | [Table](results/three_seed_checkpoint_validation_summary.csv), [Figure 2](figures/fig02_all_24_validation_KID.png) |
-| Held-out *test* FID, KID, LPIPS and opposite-edge gap | **ONE evaluated V2 model only:** Arm B / seam_proposed / seed 42 | [FID/KID](results/test_FID_KID_ONLY_B_proposed_seed42.csv), [LPIPS](results/test_LPIPS_ONLY_B_proposed_seed42.csv) |
+| Held-out *test* FID, KID, LPIPS and opposite-edge gap | **TWO evaluated V2 models at seed 42:** Arm B / transformer and Arm B / seam_proposed | [matched FID/KID across both models](results/matched_B_transformer_vs_seam_seed42_test.csv), [LPIPS for initial proposed model](results/test_LPIPS_ONLY_B_proposed_seed42.csv) |
 | **TiPGAN** trained on the exact V2 benchmark | **NOT COMPLETE** | No fabricated metrics |
 | **DF-GAN** trained on the exact V2 benchmark | **NOT COMPLETE** | Older [adapted DF-GAN](https://github.com/wiwik-instiki/EndekGAN-T2I) scores are historical, not V2 test scores |
 | Text adherence / 3-seed external test / independent Endek expert panel | **NOT COMPLETE** | Required before strong heritage/quality claims |
 
-**Important negative finding:** Arm B Transformer achieves a lower three-seed checkpoint-selection **validation KID mean (0.126686)** than Arm B Seam Proposed **(0.184445)**. Lower is better. We do not claim a fidelity improvement from seam regularization. The only completed V2 held-out evaluation (B seam seed 42) records pooled FID **302.47** and pooled KID **0.19289** with just **37 real** test images. Pooled and per-class macro scores are not interchangeable. The test scores are **exploratory and highly sample-size sensitive**.
+**Important negative finding:** Arm B Transformer achieves a lower three-seed checkpoint-selection **validation KID mean (0.126686)** than Arm B Seam Proposed **(0.184445)**. Lower is better. We do not claim a fidelity improvement from seam regularization. The first completed V2 held-out evaluation (B seam seed 42) records pooled FID **302.47** and pooled KID **0.19289** with just **37 real** test images. Pooled and per-class macro scores are not interchangeable. The test scores are **exploratory and highly sample-size sensitive**.
 
 ## 5. Actual scientific plots, source-backed tables, and images
 
@@ -89,6 +89,14 @@ python scripts\build_ieee_release.py
 The script reads completed V2 artifacts, validates run states and writes aggregated numerical files; **it does not train any GPU model**. To reproduce experiments from scratch, first obtain authorized source image/caption files, validate the official training dependencies in a drive-D environment, and follow the safety flags in [notebook 01](notebooks/01_EndekGAN_T2I_Preprocessing_BEFORE_Training_V2.ipynb) and [notebook 05](notebooks/05_EndekGAN_T2I_Train_Preprocessed_Crop_V2.ipynb). Do **not** run all training cells by default. Original reference TiPGAN and DF-GAN repositories may have incompatible hardware/conditioning requirements; adaptations must be separately documented.
 
 [Source-and-experiment evidence CSV files](results/) · [Pre-manuscript tables](tables/TABLES_AND_CAPTIONS.md) · [Reference-driven protocol](docs/REFERENCE_NOVELTY_BASELINE_PROTOCOL.md)
+
+## New: official-paper benchmark protocol and actual two-way generated image comparison
+
+The official TiPGAN and DF-GAN repositories were inspected and cloned separately. They are **not** yet trained on the V2 Endek source split. The official DF-GAN requires a DAMSM encoder and documents a minimum 12 GB GPU; TiPGAN is a single-image reference texture method, not text conditioned.
+
+**New actual evidence:** Arm B Transformer vs Arm B Seam Proposed, seed 42, on the **same held-out prompts, random latent seed and 64 images/class**. The Transformer achieved pooled FID **247.82**, pooled KID **0.11162**, with opposite-border gap **0.07952**. Seam Proposed achieved pooled FID **302.47**, pooled KID **0.19289**, and lower opposite-border gap **0.05246**. These are **exploratory** one-seed scores with only 37 real references; no FID/KID or texture-quality superiority claim is made.
+
+Read [benchmark report with actual paired images and 2x2 tiling](benchmarks/README.md), [official code/data preflight](results/REFERENCE_BASELINE_PREFLIGHT.json), [comparison matrix](tables/REFERENCE_BENCHMARK_MATRIX.csv), and [safe VS Code notebook 06](notebooks/06_TiPGAN_DFGAN_EndekGAN_Comparison_V2.ipynb).
 
 ## 7. Ethics, copyright and claims
 

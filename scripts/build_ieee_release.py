@@ -163,7 +163,7 @@ M+=["","**Table 2.** All best/last checkpoints and loss logs were verified.","",
 for row in G.itertuples(index=False):
     M.append(f"| {row.arm} | {row.model} | {row.n_seeds} | {row.mean_KID:.6f} | {row.sd_KID:.6f} |")
 M+=["","**Table 3.** Mean ± sample SD across three training seeds; validation n=37.","",
-"## Table 4. Available exploratory test scores","Table 4 contains results from only ONE completed evaluation, not all 24 models.","",
+"## Table 4. Available exploratory test scores","Table 4 preserves the first proposed-only test evaluation; matched comparisons are shown in Table 5 when completed.","",
 "| Test model | Class | FID | KID | Real n | Fake n |",
 "|---|---|---:|---:|---:|---:|"]
 for rec in T.to_dict("records"):
@@ -176,13 +176,44 @@ M+=["","**Table 4.** Class-wise test reference numbers are extremely small (5–
 "- Figure 3: paired transformer/seam-proposed validation ablation by seed and preprocessing arm.",
 "- Figures 4–6: proposed model training generator, discriminator and seam loss.",
 "- Figure 7: proposed model validation KID trajectory by seed.",
-"- Figure 8: exploratory test KID for only the one evaluated V2 model.","",
-"**Limitations:** 370 independent raw images total, 296 training sources, unchanged 37 val and 37 test images. The extra derived files (944 vs 1280) are not new independent motif images. Crop prompts lack independent semantic validation. External source images and independent external model evaluations were not added to this V2 training matrix. No verified expert study or independent test scores for the other 23 runs are claimed."]
+"- Figure 8: exploratory test KID for the first proposed-only held-out evaluation.","",
+"**Limitations:** 370 independent raw images total, 296 training sources, unchanged 37 val and 37 test images. The extra derived files (944 vs 1280) are not new independent motif images. Crop prompts lack independent semantic validation. External source images and independent external model evaluations were not added to this V2 training matrix. No verified expert study or complete three-seed model test comparison is claimed."]
+pair_file=RES/"matched_seed42_summary_exploratory.csv"
+if pair_file.is_file():
+    matched=pd.read_csv(pair_file)
+    expected={"transformer","seam_proposed"}
+    assert set(matched.model)==expected and len(matched)==2
+    M.extend(["","## Table 5. Matched two-model held-out V2 test (seed 42)",
+    "Same 37 real references, source-group split, fixed prompt samples and latent seed 90731. Test metrics are exploratory.",
+    "| Model | Pooled FID | Pooled KID | Class-macro FID | Class-macro KID | Mean opposite-border gap |",
+    "|---|---:|---:|---:|---:|---:|"])
+    for q in matched.itertuples(index=False):
+        M.append(f"| {q.model} | {q.pooled_FID:.3f} | {q.pooled_KID:.6f} | {q.class_macro_FID:.3f} | {q.class_macro_KID:.6f} | {q.unweighted_class_macro_seam_gap:.6f} |")
+    M.extend(["","**Table 5.** TiPGAN and DF-GAN were NOT evaluated on V2; these rows are internal V2 model comparisons.",
+    "**Figure 9.** Model-generated examples at matching prompt/index/latent seed (seed 42).",
+    "**Figure 10.** Matched 2 x 2 repeated-tile preview of generated outputs.",
+    "**Figure 11.** One-seed matched per-class test KID."])
 (TABLES/"TABLES_AND_CAPTIONS.md").write_text("\n".join(M)+"\n",encoding="utf-8")
+
+complete=[]
+for arm,folder in ARM.items():
+    for model in MODELS[arm]:
+        for seed in SEEDS:
+            out=SRC/"runs_preprocessed"/folder/f"{model}_seed{seed}"/"test_evaluation"
+            info=out/"evaluation_status.json"
+            if info.is_file():
+                dat=json.loads(info.read_text(encoding="utf-8"))
+                if dat.get("status")=="EVALUATION_COMPLETE" and (out/"metrics"/"E1_FID_KID_corrected.csv").is_file():
+                    complete.append(f"{arm}/{model}/seed{seed}")
+assert len(complete)<=24
 meta={"status":"TRAINING_COMPLETE_TEST_PARTIAL","training_runs":24,"checkpoints_verified":24,
       "unique_raw_images":370,"unique_train_sources":296,"training_rows_A":944,
       "training_rows_B":1280,"validation_sources":37,"test_sources":37,
-      "evaluated_test_model":"B/seam_proposed/seed42","pending_test_models":23,
-      "test_metrics_status":"EXPLORATORY_ONLY","raw_images_published":False}
+      "evaluated_test_models":complete,"evaluated_test_run_count":len(complete),
+      "pending_test_models":24-len(complete),
+      "actual_matched_test_comparison":"B/transformer/seed42" in complete and "B/seam_proposed/seed42" in complete,
+      "TiPGAN_V2_test":"NOT_RUN","DFGAN_V2_test":"NOT_RUN",
+      "test_metrics_status":"EXPLORATORY_ONLY","raw_images_published":False,
+      "paper_readiness":"INCOMPLETE_EXTERNAL_BASELINES_AND_MULTI_SEED_TESTS"}
 (RES/"EVIDENCE_STATUS.json").write_text(json.dumps(meta,indent=2),encoding="utf-8")
 print("BUILD_OK",meta)

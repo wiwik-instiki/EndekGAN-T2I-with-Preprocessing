@@ -1,0 +1,5 @@
+method,reference,input_modality,train_source_group,split_identity,trained_on_V2,heldout_evaluation,text_alignment_applicable,tileability_applicable,release_rule
+TiPGAN,"He et al., Computer-Aided Design 2025",image-reference,train-only texture sources (296 candidates),grouped296/37/37,NO,NOT_RUN,NO,YES (cross-task),Use input textures from training split only; never test as training/conditioning
+DF-GAN,"Tao et al., CVPR 2022",text,grouped source images with verified captions,grouped296/37/37,NO,NOT_RUN,YES,YES,Requires DAMSM/image-caption adaptation; label adaptations explicitly
+EndekGAN-V2-SeamProposed,current experiment,Indonesian text + motif class,"source-aware A,B",grouped296/37/37,YES,B/seed42 only,YES (pending measurement),YES,Held-out FID/KID n_real=37 exploratory
+EndekGAN-V2-Transformer,internal ablation,Indonesian text + motif class,"source-aware A,B",grouped296/37/37,YES,B/seed42 in progress / verify local status,YES (pending measurement),YES,Same latent seed 90731 and 64 fake/class
