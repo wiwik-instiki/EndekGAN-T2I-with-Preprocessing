@@ -1,42 +1,21 @@
-# Dataset preprocessing — method and scope
+# EndekGAN V2: Dataset and Experiment Methods
 
-## Inputs and derived artifacts
+## Independent source corpus and provenance
+After source-level deduplication, Endek corpus contains **370 unique original photographs** from four classes: flora, fauna, dekoratif and geometris. Source-grouped split: **296 train / 37 validation / 37 test**. Source-level grouping prevents direct leakage from augmentation/crops, but an audit flagged one visually close dHash pair crossing split boundaries for manual review. A near pair is not necessarily a duplicate.
 
-- Independent Endek source images: 370, 4 classes, 512 × 512 pixels.
-- One source-level split: train 296 / validation 37 / testing 37.
-- Resize whole source images with Lanczos to 256 × 256, without cropping or distortion.
-- Photometric augmentation is restricted to training; additional variants balance training file counts at 236 per class.
-- Total V1 processed files: train 944 / validation 37 / test 37 = 1,018.
-- Every derived file maps to its original source SHA-256 and inherits the original text prompt and class label.
-- Final project data remains local; the public repository ships source-code documentation and aggregate counts only.
+## Preprocessing treatments
+| Arm | Derived train files | Unique independent training sources | Crops |
+|---|---:|---:|---:|
+| A: full-size resize and photometric augmentation | 944 | 296 | 0 |
+| B: full-size resize, augmentation, plus heuristic crops | 1280 | 296 | 336 |
 
-## Cropping comparison
+Source images are resized from 512x512 to 256x256. Validation and test images are not cropped/augmented. The inherited prompt for each crop has **not** been independently checked to match the crop content. The extra files improve exposure diversity, not the original unique Endek-image population. External sources under examination were not incorporated into this 370-image corpus.
 
-The notebook compares (i) original 512 × 512, (ii) resized 256 × 256,
-(iii) centered crop 384 × 384 resized to 256 × 256, (iv) edge/texture-heuristic
-pilot crop 384 × 384 resized to 256 × 256, and (v) one 256 × 256
-photometrically augmented variant. Pilot crop coordinates come from a local archive.
-The two cropping demonstrations **are not included** in V1 training files and
-were not validated as ornament-aware cropping.
+## Experiment and truthful status
+V2 trained 24 completed model x seed runs: six B-arm internal variants and two A-arm controls, each at seeds 42, 123 and 2025. Validation KID selected best checkpoints; training does not use test scores for model selection. The three-seed mean validation KID for B Transformer is **0.126686**, lower than B Seam Proposed **0.184445** (lower is better).
 
-## How Text-to-Image conditioning is preserved
+Only **B/seam_proposed/seed42** has completed a V2 held-out test; small 37-real-image test FID/KID are exploratory. Compare with TiPGAN (image-conditioned tileable textures; primary 2025 Computer-Aided Design paper) and DF-GAN (text-conditioned synthesis; second 2022 CVPR paper) only after accurately adapted baseline experiments. Neither external model has exact V2 Endek results yet.
 
-- Existing original prompt, technique, layout, color and class metadata are inherited by all augmented images.
-- The images remain paired by source identifier; no synthesized captions are invented for crops.
-- For color-adjusted variants, literal color descriptions may still require visual checking.
-- Experts evaluate AI-generated results after generation, not preprocessing.
-- Do not claim that the number of independent motifs increased due to photometric augmentation.
+Cultural validity, text faithfulness and weavability are **not** established by image statistics. Experts must evaluate AI-generated output in the final phase. Prior EndekGAN already included text conditions and seam loss; V2 improves preprocessing comparison but requires additional independent technical novelty for strong new architecture claims.
 
-## Dataset leakage and comparability
-
-Source splitting takes place before augmenting. A close floral pair was placed
-within the same train split; one different floral source was swapped to the test
-split to preserve counts. Thus the split is not exactly identical to the prior
-EndekGAN-T2I manuscript's source membership. All new experimental comparisons
-must use the same source partition and the same evaluation protocol.
-
-## Training status
-
-This repository documents dataset preprocessing. It does not include newly trained
-EndekGAN-T2I V2 GAN results. For generator/discriminator architecture and earlier
-FID/KID and seam-loss experiments, refer to the [original research repository](https://github.com/wiwik-instiki/EndekGAN-T2I).
+See docs/REFERENCE_NOVELTY_BASELINE_PROTOCOL.md and tables/TABLES_AND_CAPTIONS.md.

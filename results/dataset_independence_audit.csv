@@ -1,0 +1,7 @@
+arm,split,derived_files,independent_source_images,unique_prompts,crop_files
+A,train,944,296,296,0
+A,val,37,37,37,0
+A,test,37,37,37,0
+B,train,1280,296,296,336
+B,val,37,37,37,0
+B,test,37,37,37,0

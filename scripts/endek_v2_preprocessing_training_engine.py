@@ -201,7 +201,10 @@ class Encoder:
                 self.out_dim=int(self.model.config.hidden_size)
                 if self.out_dim != out_dim:raise ValueError(f'Transformer size {self.out_dim} != expected {out_dim}')
             except Exception as exc:
-                raise RuntimeError('Transformer encoder unavailable. STOPPING; never silently replace with hash_text.') from exc
+                raise RuntimeError(
+                    'Transformer encoder unavailable. STOPPING; never silently replace with hash_text. '
+                    f'Root cause: {type(exc).__name__}: {exc}'
+                ) from exc
         elif mode not in ['cat','hash_text']:
             raise ValueError(f'Invalid encoder: {mode}')
 
@@ -472,12 +475,12 @@ def train(cfg:Config, resume=None, trusted_checkpoint=False):
         target=cfg.train_samples_per_epoch
         if target<cfg.batch_size or target%cfg.batch_size:
             raise ValueError("Fixed-steps mode requires a positive multiple of batch size")
-        sampler=WeightedRandomSampler(torch.DoubleTensor(weights),num_samples=target,
+        sampler=WeightedRandomSampler(torch.tensor(np.asarray(weights).copy(),dtype=torch.float64),num_samples=target,
                                       replacement=True,generator=sampler_gen)
     elif sampler_mode=="uniform":
         sampler=RandomSampler(dataset,replacement=False,generator=sampler_gen)
     elif sampler_mode=="weighted":
-        sampler=WeightedRandomSampler(torch.DoubleTensor(weights),num_samples=len(weights),replacement=True,generator=sampler_gen)
+        sampler=WeightedRandomSampler(torch.tensor(np.asarray(weights).copy(),dtype=torch.float64),num_samples=len(weights),replacement=True,generator=sampler_gen)
     else:
         raise ValueError("Unsupported sampler mode: "+str(sampler_mode))
     dl=DataLoader(dataset,batch_size=cfg.batch_size,sampler=sampler,drop_last=True,

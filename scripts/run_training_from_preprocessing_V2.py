@@ -7,7 +7,7 @@ Requires isolated D CUDA environment and sufficient idle VRAM. Separate test eva
 """
 from __future__ import annotations
 from pathlib import Path
-import os,sys,argparse,csv,json,datetime,subprocess,hashlib,importlib.util
+import os,sys,argparse,csv,json,datetime,subprocess,hashlib,importlib.util,traceback
 import pandas as pd
 
 ROOT=Path(__file__).resolve().parent
@@ -141,8 +141,8 @@ def main():
     if not cfgargs.execute:
         print("PREFLIGHT PASSED. No GAN training was started; add --execute after CUDA prerequisites.",flush=True)
         return
-    if not str(sys.executable).lower().startswith(str(BASE).lower()):
-        raise RuntimeError("Training must use the isolated Python environment on D:\\VSCode-MultiAgent-AI")
+    if not Path(sys.executable).samefile(KERNELEXE):
+        raise RuntimeError("Training must use the EndekGAN-T2I V2 Python environment on drive D (including its .venv junction)")
     needed=("torch","torchvision","sklearn","torchmetrics","torch_fidelity","transformers")
     missing=[x for x in needed if not modules[x]]
     if missing and not cfgargs.smoke:
@@ -162,8 +162,30 @@ def main():
         if not cfgargs.execute:
             print("Smoke preview only.")
             return
-    if output.exists() and any(output.iterdir()) and not cfgargs.resume:
-        raise FileExistsError("Run already contains files. To resume local V2 checkpoint use --resume.")
+    if output.exists() and any(output.iterdir()):
+        finished_state=output/"run_state.json"
+        saved_config=output/"run_config.json"
+        if finished_state.is_file() and saved_config.is_file():
+            previous=json.loads(finished_state.read_text(encoding="utf-8"))
+            previous_cfg=json.loads(saved_config.read_text(encoding="utf-8"))
+            expected_cfg={
+                "split_dir":report["split_dir"],"encoder":mode,"seed":cfgargs.seed,
+                "epochs":1 if cfgargs.smoke else cfgargs.epochs,
+                "batch_size":cfgargs.batch_size,"image_size":64 if cfgargs.smoke else 256,
+                "train_samples_per_epoch":cfgargs.samples_per_epoch,
+                "seam_lambda":seam,"disable_class":no_class
+            }
+            if previous.get("completed") is True and all(
+                previous_cfg.get(key)==value for key,value in expected_cfg.items()
+            ):
+                print("ALREADY_COMPLETED: existing trained run; no duplicate training started. "
+                      f"Status={previous.get('status')} epoch={previous.get('actual_epochs')} "
+                      f"best_epoch={previous.get('best_epoch')} "
+                      f"checkpoint={previous.get('best_checkpoint')}",flush=True)
+                return
+        if not cfgargs.resume:
+            raise FileExistsError("Run already contains files; use --resume only for an incomplete V2 run. "
+                                  "A new configuration requires a separate output directory.")
     if cfgargs.resume and not (output/"checkpoints"/f"checkpoint_last_{mode}.pth").exists():
         raise FileNotFoundError("No locally generated V2 checkpoint to resume")
     output.mkdir(parents=True,exist_ok=True)
@@ -201,6 +223,7 @@ def main():
         plan["best_checkpoint"]=finished.get("best_checkpoint")
     except Exception as err:
         plan["status"]="FAILED";plan["error"]=repr(err)
+        plan["error_traceback"]=traceback.format_exc()
         raise
     finally:
         (output/"experiment_plan.json").write_text(json.dumps(plan,indent=2,ensure_ascii=False),encoding="utf-8")

@@ -1,0 +1,12 @@
+flowchart TD
+    A["TiPGAN (CAD 2025): image-conditioned tileable textures"] --> G{"Research gap"}
+    B["DF-GAN (CVPR 2022): prompt-conditioned image synthesis"] --> G
+    G --> C["EndekGAN V2: source-aware text conditioning plus seam regularization"]
+    C --> D["296 independent train sources / 37 val / 37 test"]
+    D --> E["Arm A = 944 derived images / Arm B = 1280 derived images"]
+    E --> F["24 completed training jobs, checkpoint validation"]
+    F --> H{"Comparable V2 test evidence?"}
+    H -- "Only proposed B seed 42 done" --> I["Exploratory results; 23 tests + external baselines pending"]
+    H -- "After equivalent benchmarks" --> J["Report fidelity, semantics, seam, diversity, expert assessment"]
+    I --> J
+    J --> K["Only then assess peer-reviewed novelty and trade-offs"]

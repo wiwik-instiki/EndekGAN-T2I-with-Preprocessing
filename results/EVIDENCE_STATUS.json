@@ -1,0 +1,15 @@
+{
+  "status": "TRAINING_COMPLETE_TEST_PARTIAL",
+  "training_runs": 24,
+  "checkpoints_verified": 24,
+  "unique_raw_images": 370,
+  "unique_train_sources": 296,
+  "training_rows_A": 944,
+  "training_rows_B": 1280,
+  "validation_sources": 37,
+  "test_sources": 37,
+  "evaluated_test_model": "B/seam_proposed/seed42",
+  "pending_test_models": 23,
+  "test_metrics_status": "EXPLORATORY_ONLY",
+  "raw_images_published": false
+}

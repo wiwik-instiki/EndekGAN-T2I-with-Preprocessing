@@ -1,0 +1,5 @@
+label,lpips_mean,lpips_sd,n_pairs,warning
+dekoratif,0.1439546734094619,0.1393952071880339,40,"LPIPS perceptual variability, not semantic compliance"
+fauna,0.0108246275922283,0.0112775905641691,40,"LPIPS perceptual variability, not semantic compliance"
+flora,0.1584073230857029,0.1366220133267235,40,"LPIPS perceptual variability, not semantic compliance"
+geometris,0.0057746142963878,0.0044141300779086,40,"LPIPS perceptual variability, not semantic compliance"

@@ -1,0 +1,6 @@
+class,fid,kid,kid_sd,n_real,n_fake,kid_subset_size,warning
+all,302.4705505371094,0.1928879171609878,0.0131344711408019,37,256,37,EXPLORATORY: <50 real reference images; FID is strongly biased/unstable.
+flora,273.413330078125,0.238854095339775,0.0149207692593336,15,64,15,EXPLORATORY: <50 real reference images; FID is strongly biased/unstable.
+fauna,408.49658203125,0.4609884917736053,0.0055515607818961,5,64,5,EXPLORATORY: <50 real reference images; FID is strongly biased/unstable.
+dekoratif,368.4560241699219,0.4055813252925873,0.0293221920728683,11,64,11,EXPLORATORY: <50 real reference images; FID is strongly biased/unstable.
+geometris,391.3487243652344,0.3551590740680694,0.0035975291393697,6,64,6,EXPLORATORY: <50 real reference images; FID is strongly biased/unstable.

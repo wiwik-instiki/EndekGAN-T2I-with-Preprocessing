@@ -1,21 +1,24 @@
-# EndekGAN-T2I V2: Preprocessed GAN Training
+# EndekGAN-T2I V2: Training Completed, Benchmark Pending
 
-Main experiment B: 1280 training, 37 validation, 37 testing FILES, including 336 heuristic crop variants.
-Control A: 944 training, 37 validation, 37 testing files. Held-out sources identical.
-The image source/metadata files are private and not provided in this public repository.
-These are processed-file counts, not new independent Endek motif counts.
-Cropping inherited global prompts and its per-crop semantic alignment has NOT been verified.
+## Latest verified local status (16 November 2026)
+- **24/24** model-seed training jobs COMPLETED; best and last checkpoints verified locally.
+- 18 B-arm jobs (six models x three seeds) and six A-arm controls (two models x three seeds).
+- The **only** fully completed V2 independent held-out test was B / seam_proposed / seed 42, yielding 256 generated images on a split with 37 original real test images.
+- External TiPGAN and DF-GAN **have not yet been trained/reproduced on the exact V2 Endek benchmark**. The older repository's adapted DF-GAN belongs to a different split/protocol and must not be counted here.
+- V2 test evaluation for the other 23 internal run combinations remains pending.
 
-Open notebooks/05_EndekGAN_T2I_Train_Preprocessed_Crop_V2.ipynb in VS Code,
-select Python 3.11 (EndekGAN-T2I V2 | D:), and execute the preflight cells.
-The model runner genuinely trains EndekGAN from random weights.
-To actually train, install CUDA dependencies into the D-only kernel with the setup CMD,
-verify at least 6400 MiB free RTX VRAM, then change TRAIN_NOW=False to True in notebook section 7.
-Experiment settings use 512 balanced sampled items per epoch, batch size 4 and 128
-optimizer update pairs per epoch for comparable training A and B.
-Validation KID selects checkpoints, held-out test is used only after training.
+## Data and optimization
+- Original independent images: 370, with 296 training, 37 validation, 37 test.
+- A: 944 derived training rows; B: 1280 derived rows = 944 + 336 crops. **Both contain 296 unique original train-source images**.
+- Batch size 4, 512 balanced sampled rows/epoch and 128 optimizer updates/epoch. Best checkpoint selected using validation KID only.
+- Text conditioning: multilingual encoder and class embedding. Proposed border regularization with seam_lambda=0.5; paired Transformer control seam_lambda=0.
+- Crop-derived prompt semantic alignment remains unverified.
 
-Notebook preflight execution has succeeded. CUDA PyTorch is currently absent from the D-only kernel
-and free RTX VRAM is approximately 2258 MiB, so V2 full GAN training has NOT started.
-The old GAN weights are not reused. Expert judgment is reserved for AI-generated images after training.
-Adapted DF-GAN-MiniLM is a separate architecture and its dedicated runner is not part of this code.
+## Reproduce the public summary without GPU retraining
+Run the analytical script scripts/build_ieee_release.py within an authorized D-drive working copy adjacent to the V2 local run evidence. Its output is the 24-run CSV data, eight summary figures, and tables. The public repo does not contain original/private source images or trained weights.
+
+The public notebook has TRAIN_NOW=False, RUN_ALL_INTERNAL=False, EVALUATE_NOW=False to avoid accidental training or re-evaluation.
+
+Read docs/REFERENCE_NOVELTY_BASELINE_PROTOCOL.md for the main TiPGAN journal reference, additional DF-GAN comparator, and fair experiment protocol.
+
+**Do not claim** 1280 unique motifs, complete cross-model held-out tests, independent expert acceptance, or architectural novelty absent from actual code.

@@ -1,4 +1,4 @@
-# Do not publish Endek images, raw provenance data, checkpoints or archives.
+# Do not publish Endek source images, derived private motif images, or checkpoints.
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
@@ -17,3 +17,12 @@ source_split_*.csv
 ENDEK_Dataset/
 ENDEK_AUGMENTED_V1/
 *.log
+# Only the explicitly reviewed public analytical plots are permitted.
+!figures/
+!figures/fig*.png
+# Never publish privacy- or rights-sensitive illustrative samples.
+figures/comparisons/
+*.env
+.env*
+*.key
+*.pem
