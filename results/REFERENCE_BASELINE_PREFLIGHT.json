@@ -23,12 +23,13 @@
     "official_input": "reference image path",
     "official_train_entrypoint": "train.py",
     "repo_readme_entrypoint_note": "README says train_tipgan.py but checkout provides train.py",
-    "prerequisite_VGG_weights_available": false,
+    "prerequisite_VGG_weights_available": true,
     "candidate_independent_train_sources": 296,
     "pilot_reference_images_selected_from_training_only": 4,
     "V2_dataset_training_status": "NOT_TRAINED",
     "V2_test_tileability_status": "NOT_MEASURED",
-    "scientific_scope": "cross-task image-reference tileability; no text alignment scores"
+    "scientific_scope": "cross-task image-reference tileability; no text alignment scores",
+    "local_pilot": "30_TRAIN_ITERATIONS_NO_TEST"
   },
   "DF_GAN": {
     "official_repo": "https://github.com/tobran/DF-GAN",
@@ -38,7 +39,8 @@
     "official_min_GPU_GiB": 12,
     "V2_dataset_training_status": "NOT_TRAINED",
     "V2_test_status": "NOT_MEASURED",
-    "adaptation_required": "Endek caption tokenizer and DAMSM or explicitly labeled MiniLM adaptation; 8GB VRAM workaround is not original-spec equivalence"
+    "adaptation_required": "Endek caption tokenizer and DAMSM or explicitly labeled MiniLM adaptation; 8GB VRAM workaround is not original-spec equivalence",
+    "local_adapted_pilot": "ONE_EPOCH_128_UPDATES_NO_TEST"
   },
   "EndekGAN_V2": {
     "completed_training_runs": 24,

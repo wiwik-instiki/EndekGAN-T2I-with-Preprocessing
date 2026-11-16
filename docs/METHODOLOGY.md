@@ -14,7 +14,7 @@ Source images are resized from 512x512 to 256x256. Validation and test images ar
 ## Experiment and truthful status
 V2 trained 24 completed model x seed runs: six B-arm internal variants and two A-arm controls, each at seeds 42, 123 and 2025. Validation KID selected best checkpoints; training does not use test scores for model selection. The three-seed mean validation KID for B Transformer is **0.126686**, lower than B Seam Proposed **0.184445** (lower is better).
 
-Only **B/seam_proposed/seed42** and **B/transformer/seed42** have completed matched V2 held-out tests; small 37-real-image test FID/KID are exploratory. Compare with TiPGAN (image-conditioned tileable textures; primary 2025 Computer-Aided Design paper) and DF-GAN (text-conditioned synthesis; second 2022 CVPR paper) only after accurately adapted baseline experiments. Neither external model has exact V2 Endek results yet.
+Both **B/seam_proposed** and **B/transformer** have completed matched V2 held-out tests for all three seeds (42, 123 and 2025); small 37-real-image test FID/KID are exploratory. Compare with TiPGAN (image-conditioned tileable textures; primary 2025 Computer-Aided Design paper) and DF-GAN (text-conditioned synthesis; second 2022 CVPR paper) only after accurately adapted baseline experiments. Neither external model has exact V2 Endek results yet.
 
 Cultural validity, text faithfulness and weavability are **not** established by image statistics. Experts must evaluate AI-generated output in the final phase. Prior EndekGAN already included text conditions and seam loss; V2 improves preprocessing comparison but requires additional independent technical novelty for strong new architecture claims.
 

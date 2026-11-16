@@ -5,7 +5,7 @@
 - 18 B-arm jobs (six models x three seeds) and six A-arm controls (two models x three seeds).
 - The **two** completed V2 independent held-out tests are B / seam_proposed / seed 42 and B / transformer / seed 42, each with 256 generated images and the same 37 original test images.
 - External TiPGAN and DF-GAN **have not yet been trained/reproduced on the exact V2 Endek benchmark**. The older repository's adapted DF-GAN belongs to a different split/protocol and must not be counted here.
-- V2 test evaluation for the other 22 internal run combinations remains pending.
+- V2 test evaluation for the other 18 internal run combinations remains pending.
 
 ## Data and optimization
 - Original independent images: 370, with 296 training, 37 validation, 37 test.

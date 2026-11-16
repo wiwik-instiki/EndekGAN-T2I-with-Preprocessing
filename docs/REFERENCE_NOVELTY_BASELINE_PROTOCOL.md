@@ -67,9 +67,9 @@ Official implementation: https://github.com/tobran/DF-GAN
 | Number of model–seed training runs completed | **24/24**, all best/last checkpoints present; 3 training seeds 42/123/2025 |
 | Arm B Transformer validation KID | **0.126686** three-seed mean (checkpoint-selection validation, lower better) |
 | Arm B Seam Proposed validation KID | **0.184445** three-seed mean — **worse than Transformer** |
-| Completed V2 held-out test | **B / Seam Proposed / Seed 42 AND B / Transformer / Seed 42**, 256 fake per model and 37 real test references |
+| Completed V2 held-out test | **B / Seam Proposed AND B / Transformer across seeds 42, 123 and 2025**, 256 generated images per model/seed and 37 real test references |
 | Single-model held-out pooled FID / pooled KID | **302.47055 / 0.1928879**, exploratory; not macro-class aggregates |
-| Test metrics of other 22 V2 runs | **Not completed** |
+| Test metrics of other 18 V2 runs | **Not completed** |
 | TiPGAN and DF-GAN on exactly matched V2 protocol | **Not completed** |
 | Crop-level semantics and blinded Endek-expert scoring | **Not validated** |
 | More independent Endek images from external sources | **Not incorporated** |

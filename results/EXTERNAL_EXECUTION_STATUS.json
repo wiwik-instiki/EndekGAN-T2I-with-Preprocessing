@@ -1,0 +1,36 @@
+{
+  "research": "TiPGAN primary CAD 2025 reference; DF-GAN secondary CVPR 2022 reference",
+  "v2_training_completed": 24,
+  "internal_heldout_test_models_completed": 6,
+  "internal_models": "Arm B Transformer vs Seam Proposed across seeds 42/123/2025",
+  "real_train_sources": 296,
+  "real_val_sources": 37,
+  "real_test_sources": 37,
+  "TiPGAN": {
+    "input": "single image-conditioned cloth texture (NOT text prompt)",
+    "reference_code": "https://github.com/VickyHEHonghong/TiPGAN",
+    "vgg_weights_obtained": true,
+    "pilot_train_reference_class": "flora",
+    "pilot_completed_iterations": 30,
+    "authors_default_iterations_per_reference": 50000,
+    "pilot_checkpoint": true,
+    "status": "OFFICIAL_30_ITERATION_SMOKE_ONLY_NOT_COMPARABLE",
+    "heldout_test_metrics": "NOT_COMPUTED"
+  },
+  "DFGAN_MiniLM_adapted": {
+    "input": "Indonesian prompt embedding (384d MiniLM, same encoder as V2)",
+    "reference_code": "https://github.com/tobran/DF-GAN",
+    "official_models_used": "NetG/NetD/NetC",
+    "local_forward_backward_smoke": "PASS",
+    "pilot_training_seed": 42,
+    "pilot_completed_epochs": 1,
+    "pilot_completed_optimizer_step_pairs": 128,
+    "gpu_max_allocated_MiB": 1655.21,
+    "status": "ADAPTED_ONE_EPOCH_PILOT_ONLY_NOT_CONVERGED",
+    "validation_checkpoint": "NOT_SELECTED",
+    "heldout_test_metrics": "NOT_COMPUTED",
+    "Kaggle_larger_gpu_training": "PREPARED_NOT_VERIFIED_COMPLETED"
+  },
+  "three_way_performance_ranking": "NOT_POSSIBLE_YET",
+  "private_data_released_to_public_GitHub": false
+}

@@ -62,3 +62,7 @@ Evaluation uses the same held-out prompt/source references, image resolution 256
 
 ## Research status
 **This is a verified two-way V2 test + external baseline input-preparation protocol, NOT a completed TiPGAN-vs-DF-GAN-vs-EndekGAN performance ranking.**
+
+## New three-seed outcome
+
+The internal matched B-arm comparison across seeds 42/123/2025 is **complete**. See [the verified six-test results with figures 12–14](THREE_SEED_TEST_REPORT.md). The original seed-42 table remains historical detail and is superseded by the three-seed summary for scientific discussion. External TiPGAN and DF-GAN still lack V2 results.

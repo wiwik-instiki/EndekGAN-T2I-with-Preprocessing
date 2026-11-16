@@ -97,3 +97,13 @@ Same 37 real references, source-group split, fixed prompt samples and latent see
 **Figure 9.** Model-generated examples at matching prompt/index/latent seed (seed 42).
 **Figure 10.** Matched 2 x 2 repeated-tile preview of generated outputs.
 **Figure 11.** One-seed matched per-class test KID.
+
+## Table 6. Matched three-seed held-out test — full pre-manuscript comparison
+
+See [three-seed results](../benchmarks/THREE_SEED_TEST_REPORT.md). Means and sample SD computed from three completed independent training seeds, not 3 independent test datasets. Results are exploratory because the actual held-out test only includes 37 distinct reference images.
+
+**Figure 12.** Per-seed fidelity and seam gap trade-offs for matched B-arm controls.
+
+**Figure 13.** Mean ± sample SD of three independent training-seed outcomes; no significance claim.
+
+**Figure 14.** Generated images for two models across four classes and three training seeds, fixed sample index, not hand-picked.

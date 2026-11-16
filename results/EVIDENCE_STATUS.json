@@ -10,14 +10,20 @@
   "test_sources": 37,
   "evaluated_test_models": [
     "B/transformer/seed42",
-    "B/seam_proposed/seed42"
+    "B/seam_proposed/seed42",
+    "B/transformer/seed123",
+    "B/seam_proposed/seed123",
+    "B/transformer/seed2025",
+    "B/seam_proposed/seed2025"
   ],
-  "evaluated_test_run_count": 2,
-  "pending_test_models": 22,
+  "evaluated_test_run_count": 6,
+  "pending_test_models": 18,
   "actual_matched_test_comparison": true,
   "TiPGAN_V2_test": "NOT_RUN",
   "DFGAN_V2_test": "NOT_RUN",
   "test_metrics_status": "EXPLORATORY_ONLY",
   "raw_images_published": false,
-  "paper_readiness": "INCOMPLETE_EXTERNAL_BASELINES_AND_MULTI_SEED_TESTS"
+  "paper_readiness": "INCOMPLETE_EXTERNAL_BASELINES_AND_MULTI_SEED_TESTS",
+  "B_transformer_and_seam_three_seed_test_complete": true,
+  "caution": "All FID/KID test scores exploratory: just 37 independent reference images."
 }

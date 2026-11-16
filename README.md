@@ -54,7 +54,7 @@ Data audit output: [dataset_independence_audit.csv](results/dataset_independence
 | **Training** 6 B-arm configurations × 3 seeds, plus 2 A-arm configurations × 3 seeds | **24 / 24 completed** on new V2 weights | [24-run log](results/all_24_runs.csv) |
 | Best and last checkpoint availability / epoch and validation log consistency | **24 / 24 verified locally** | [Audit summary](results/EVIDENCE_STATUS.json) |
 | Three-seed **validation KID** only, used for checkpoint selection | Completed | [Table](results/three_seed_checkpoint_validation_summary.csv), [Figure 2](figures/fig02_all_24_validation_KID.png) |
-| Held-out *test* FID, KID, LPIPS and opposite-edge gap | **TWO evaluated V2 models at seed 42:** Arm B / transformer and Arm B / seam_proposed | [matched FID/KID across both models](results/matched_B_transformer_vs_seam_seed42_test.csv), [LPIPS for initial proposed model](results/test_LPIPS_ONLY_B_proposed_seed42.csv) |
+| Held-out *test* FID, KID, LPIPS and opposite-edge gap | **SIX evaluated V2 models/seeds:** Arm B Transformer and Seam Proposed, each at seeds 42/123/2025 | [matched three-seed held-out FID/KID and seam metrics](results/heldout_B_3seeds_mean_sd.csv), [per-seed values](results/heldout_B_transformer_vs_seam_3seeds_per_seed.csv) |
 | **TiPGAN** trained on the exact V2 benchmark | **NOT COMPLETE** | No fabricated metrics |
 | **DF-GAN** trained on the exact V2 benchmark | **NOT COMPLETE** | Older [adapted DF-GAN](https://github.com/wiwik-instiki/EndekGAN-T2I) scores are historical, not V2 test scores |
 | Text adherence / 3-seed external test / independent Endek expert panel | **NOT COMPLETE** | Required before strong heritage/quality claims |
@@ -97,6 +97,43 @@ The official TiPGAN and DF-GAN repositories were inspected and cloned separately
 **New actual evidence:** Arm B Transformer vs Arm B Seam Proposed, seed 42, on the **same held-out prompts, random latent seed and 64 images/class**. The Transformer achieved pooled FID **247.82**, pooled KID **0.11162**, with opposite-border gap **0.07952**. Seam Proposed achieved pooled FID **302.47**, pooled KID **0.19289**, and lower opposite-border gap **0.05246**. These are **exploratory** one-seed scores with only 37 real references; no FID/KID or texture-quality superiority claim is made.
 
 Read [benchmark report with actual paired images and 2x2 tiling](benchmarks/README.md), [official code/data preflight](results/REFERENCE_BASELINE_PREFLIGHT.json), [comparison matrix](tables/REFERENCE_BENCHMARK_MATRIX.csv), and [safe VS Code notebook 06](notebooks/06_TiPGAN_DFGAN_EndekGAN_Comparison_V2.ipynb).
+
+
+## Completed matched six-test evaluation, 3 training seeds (update 17 November 2026)
+
+**Completed:** Arm B Transformer and Seam Proposed each at training seeds **42, 123, 2025**, all with source-identical 296/37/37 train/validation/test split, 64 generated held-out samples per class, and fixed evaluation latent seed. Images and private prompt records remain local.
+
+| Held-out test metric | Transformer mean ± SD | Seam Proposed mean ± SD |
+|---|---:|---:|
+| Pooled FID ↓ | 254.474 ± 40.967 | 302.127 ± 5.459 |
+| Pooled KID ↓ | 0.128485 ± 0.054584 | 0.190846 ± 0.004053 |
+| Class-macro FID ↓ | 316.145 ± 41.270 | 358.653 ± 8.125 |
+| Opposite-border seam gap ↓ | 0.089935 ± 0.014491 | **0.053379 ± 0.001198** |
+| LPIPS diversity ↑ | 0.256295 ± 0.216808 | 0.033152 ± 0.041343 |
+
+**Observed trade-off:** opposite-border gap reduced approximately **40.6%** in the three-seed mean, but worsened distributional fidelity and sharply reduced LPIPS diversity. Seed 2025 slightly favored Seam Proposed in pooled FID/KID. FID/KID are *exploratory* with only 37 real test images. No human-rated Endek authenticity is implied.
+
+[Complete scientific three-seed report](benchmarks/THREE_SEED_TEST_REPORT.md) ·
+[per-seed CSV](results/heldout_B_transformer_vs_seam_3seeds_per_seed.csv) ·
+[mean ± SD](results/heldout_B_3seeds_mean_sd.csv) ·
+[Figure 12](figures/fig12_heldout_B_test_three_seeds_tradeoff.png) ·
+[Figure 13](figures/fig13_heldout_B_test_three_seed_mean_sd.png) ·
+[Figure 14](figures/fig14_actual_B_generated_motifs_3seed_comparison.png)
+
+**External main-reference TiPGAN (image-conditioned) and additional DF-GAN (text-conditioned) have NOT completed a V2 benchmark.** Neither can be represented by values borrowed from the earlier EndekGAN experiments.
+
+
+## External method execution: source-anchored but not yet benchmark-complete
+
+A source-clean TiPGAN official-code pilot was successfully run for **30 optimizer iterations on one training-only flora image**, with its original VGG weights and a saved pilot checkpoint. The authors' default per-texture training budget is 50,000 iterations, so **this is not a converged benchmark**.
+
+The official DF-GAN NetG/NetD/NetC architecture, explicitly adapted to use **exactly the frozen V2 MiniLM384 text features instead of canonical DAMSM**, passed a local gradient test and **one 128-step training epoch** on the actual 1,280-file Arm B data. This is **not a completed DF-GAN V2 comparison**.
+
+[Execution audit](benchmarks/EXTERNAL_BASELINE_EXECUTION.md) ·
+[Machine-readable statuses](results/EXTERNAL_EXECUTION_STATUS.json) ·
+[Adapted DF-GAN reproducible Kaggle training script](scripts/dfgan_minilm_v2_kaggle_adapter.py).
+
+**Do not place pilot-only values next to the held-out three-seed EndekGAN FID/KID table.** TiPGAN is image-reference-based and cannot be evaluated for prompt adherence it does not consume.
 
 ## 7. Ethics, copyright and claims
 
