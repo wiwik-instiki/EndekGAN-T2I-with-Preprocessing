@@ -4,7 +4,7 @@ from pathlib import Path
 import csv, json, hashlib, random, collections, math
 from PIL import Image, ImageOps, ImageEnhance, ImageFilter, ImageDraw, ImageChops, ImageStat
 
-ROOT = Path(r"D:\DISERTASI_S3\WIWIK\EXPERIMEN_2")
+ROOT = Path(__import__("os").environ["ENDEK_RESEARCH_ROOT"])
 SRC = ROOT / "ENDEK_Dataset"
 OLD_MANIFEST = ROOT / "ENDEK_AUGMENTED_V1" / "source_split_pre_revision.csv"
 OUT = ROOT / "ENDEK_AUGMENTED_V1"

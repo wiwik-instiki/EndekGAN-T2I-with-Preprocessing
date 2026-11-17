@@ -1,7 +1,7 @@
 from pathlib import Path
 from PIL import Image, ImageChops, ImageStat
 import csv, json, statistics, collections
-ROOT=Path(r"D:\DISERTASI_S3\WIWIK\EXPERIMEN_2\ENDEK_AUGMENTED_V1")
+ROOT=Path(__import__("os").environ["ENDEK_RESEARCH_ROOT"])/"ENDEK_AUGMENTED_V1"
 with (ROOT/"augmentation_manifest.csv").open(newline="",encoding="utf-8-sig") as f:
     rows=list(csv.DictReader(f))
 variants=[r for r in rows if r["generated"]=="1"]

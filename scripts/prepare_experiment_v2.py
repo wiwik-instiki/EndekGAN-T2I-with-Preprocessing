@@ -2,11 +2,11 @@
 """Stage strictly traceable EndekGAN-T2I V2 experiments, without training models."""
 from pathlib import Path
 import csv, hashlib, json, sys, collections, importlib.util
-ROOT=Path(r"D:\DISERTASI_S3\WIWIK\EXPERIMEN_2")
+ROOT=Path(__import__("os").environ["ENDEK_RESEARCH_ROOT"])
 DATA=ROOT/"ENDEK_AUGMENTED_V1"
 PROJECT=ROOT/"ENDEK_T2I_EXPERIMENT_V2"
 META=DATA/"metadata_expert_guided_T2I_augmented_V1.csv"
-ORIGINAL=Path(r"D:\DISERTASI_S3\WIWIK\DATASET_L2\EndekGAN\EndekGAN-T2I\EndekGAN_T2I_IEEE_FULL_CPU_EarlyStopping_V5.ipynb")
+ORIGINAL=Path(__import__("os").environ["ENDEK_PREVIOUS_NOTEBOOK"])
 CLASSES=("flora","fauna","dekoratif","geometris")
 SEEDS=(42,123,2025)
 VARIANTS=[

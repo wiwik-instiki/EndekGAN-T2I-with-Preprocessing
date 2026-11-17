@@ -1,0 +1,4 @@
+stage,training_sources,derived_train_views,validation_sources,test_sources
+Independent source photographs,296,296,37,37
+Arm A: resized and augmented full frames,296,944,37,37
+Arm B: Arm A + 336 crops,296,1280,37,37

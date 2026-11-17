@@ -2,7 +2,7 @@
 """Build engine-compatible V2 split files WITHOUT modifying master preprocessing output."""
 from pathlib import Path
 import pandas as pd,json,hashlib
-ROOT=Path(r"D:\DISERTASI_S3\WIWIK\EXPERIMEN_2\ENDEK_T2I_EXPERIMENT_V2")
+ROOT=Path(__import__("os").environ["ENDEK_V2_ROOT"])
 BASE=ROOT.parent/"ENDEK_PREPROCESSING_V2"/"arms"
 ARMS={"A":"full_image_augmented_A","B":"full_plus_crop_ablation_B"}
 STAGED=ROOT/"TRAINING_SPLITS_PREPROCESSED_V2"

@@ -6,9 +6,9 @@ from pathlib import Path
 from PIL import Image
 import csv, hashlib, json, collections, os
 
-ORIGINAL_META=Path(r"D:\DISERTASI_S3\WIWIK\DATASET_L2\EndekGAN\EndekGAN_Dataset\metadata_expert_guided.csv")
-DATASET=Path(r"D:\DISERTASI_S3\WIWIK\EXPERIMEN_2\ENDEK_Dataset")
-OUTPUT=Path(r"D:\DISERTASI_S3\WIWIK\EXPERIMEN_2\ENDEK_AUGMENTED_V1")
+ORIGINAL_META=Path(os.environ["ENDEK_METADATA_CSV"])
+DATASET=Path(os.environ["ENDEK_RESEARCH_ROOT"])/"ENDEK_Dataset"
+OUTPUT=Path(os.environ["ENDEK_RESEARCH_ROOT"])/"ENDEK_AUGMENTED_V1"
 AUG=OUTPUT/"augmentation_manifest.csv"
 SPLIT=OUTPUT/"group_aware_source_split.csv"
 
@@ -149,7 +149,7 @@ summary={
 "techniques":dict(collections.Counter(m["technique"] for m in meta)),
 "no_validation_or_test_augmentation":True,
 "warning":"Text-image pairing is inherited from metadata and filename-based prompts; correctness of all motif descriptions, technique, layout, cultural statements, and colors has NOT been independently validated. Cropping is NOT applied in V1.",
-"legacy_image_path_in_source_csv":"Original CSV points to D:\\DISERTASI_S3\\WIWIK\\DATASET_L2\\EndekGAN\\EndekGAN_Dataset. Use NEW CSV image_path for processed images."
+"legacy_image_path_in_source_csv":"Local source-image paths are private; use processed CSV image_path."
 }
 (OUTPUT/"metadata_T2I_verification_report.json").write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding="utf-8")
 print(json.dumps(summary,indent=2,ensure_ascii=False))

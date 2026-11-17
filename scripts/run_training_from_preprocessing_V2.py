@@ -13,7 +13,7 @@ import pandas as pd
 ROOT=Path(__file__).resolve().parent
 DATA=ROOT.parent/"ENDEK_PREPROCESSING_V2"
 BASE=Path(r"D:\VSCode-MultiAgent-AI")
-HF_MODEL_CACHE=Path(r"D:\DISERTASI_S3\WIWIK\DATASET_L2\EndekGAN\EndekGAN-T2I\MODEL_CACHE\huggingface")
+HF_MODEL_CACHE=Path(__import__("os").environ["ENDEK_HF_CACHE"])
 os.environ.setdefault("HF_HOME",str(HF_MODEL_CACHE))
 os.environ.setdefault("TORCH_HOME",str(BASE/"caches"/"torch"))
 os.environ.setdefault("PIP_CACHE_DIR",str(BASE/"caches"/"pip"))

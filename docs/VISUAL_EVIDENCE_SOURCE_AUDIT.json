@@ -1,0 +1,30 @@
+{
+  "preprocessed_B": [
+    1280,
+    37,
+    37
+  ],
+  "independent_sources": [
+    296,
+    37,
+    37
+  ],
+  "Arm_A_train_views": 944,
+  "Arm_B_crop_views": 336,
+  "source_overlap": 0,
+  "heldout_internal_runs": 6,
+  "DFGAN_test_seeds_reported": [
+    42,
+    123
+  ],
+  "DFGAN_2025_test_not_reported": true,
+  "new_figures": [
+    "fig16",
+    "fig17",
+    "fig18",
+    "fig19",
+    "fig20",
+    "fig21"
+  ],
+  "raw_source_images_exported": false
+}

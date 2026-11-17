@@ -28,7 +28,7 @@ Notebook baru telah dieksekusi dengan kernel Python 3.11 dari drive D. Semua 13 
 - Ketika sumber eksternal sudah ada, audit, split sumber dan preprocessing perlu dijalankan ulang untuk menyusun dataset final penelitian baru.
 
 ## Cara membuka di VS Code
-- Workspace: `D:\DISERTASI_S3\WIWIK\EXPERIMEN_2\ENDEK_T2I_EXPERIMENT_V2\EndekGAN-T2I-V2.code-workspace`.
+- Workspace: `the private ENDEK_V2_ROOT directory / EndekGAN-T2I-V2.code-workspace`.
 - Launcher: `D:\VSCode-MultiAgent-AI\START_ENDEK_T2I_V2.cmd` sudah diarahkan ke notebook preprocessing baru.
 - Kernel: **Python 3.11 (EndekGAN-T2I V2 | D:)**.
 - Interpreter: `D:\VSCode-MultiAgent-AI\envs\endekgan-t2i-v2-py311\Scripts\python.exe`.
