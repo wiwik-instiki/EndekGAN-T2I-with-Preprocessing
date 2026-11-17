@@ -1,0 +1,187 @@
+{
+  "project": {
+    "topic": "Source-aware preprocessing and seam-regularized text-to-image synthesis of Balinese Endek motifs",
+    "user_selected": true,
+    "research_question": "What fidelity–tileability and perceptual diversity trade-offs arise from seam regularization with source-grouped Endek T2I preprocessing?",
+    "target_journal": "IEEE Access"
+  },
+  "current_stage": 5,
+  "gates": [
+    {
+      "gate": 1,
+      "status": "VERIFIED",
+      "evidence": "User-scoped Endek T2I topic and IEEE Access target"
+    },
+    {
+      "gate": 2,
+      "status": "PARTIAL",
+      "evidence": "He et al. TiPGAN CAD 2025 verified DOI; its open dataset and exact license were not reaudited in this writing turn"
+    },
+    {
+      "gate": 3,
+      "status": "PARTIAL",
+      "evidence": "Actual V2 code and explicit internal ablation examined; strong new architecture not independently established"
+    },
+    {
+      "gate": 4,
+      "status": "PARTIAL",
+      "evidence": "24 training runs + 6 internal held-out test runs; external TiPGAN not converged, third adapted DF-GAN held-out test pending"
+    },
+    {
+      "gate": 5,
+      "status": "INTRODUCTION_DRAFT",
+      "evidence": "5 CARS paragraphs, 9 APA references, BibTeX, key-to-source audit"
+    },
+    {
+      "gate": 6,
+      "status": "PENDING",
+      "evidence": "IEEE numeric citation conversion, peer-review and full final submission checks"
+    }
+  ],
+  "source_register": [
+    {
+      "citation_key": "Arfan2024EndekSustainability",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "He2025TiPGAN",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "Hendrawati2024EndekStableDiffusion",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "Karras2020LimitedDataGAN",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "BaliProv2026YoungWeavers",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "Purnawan2026EndekLoRA",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "RodriguezPardo2023SeamlessGAN",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "Tao2022DFGAN",
+      "type": "BIBTEX_ENTRY"
+    },
+    {
+      "citation_key": "Wahid2025BatikDiffusion",
+      "type": "BIBTEX_ENTRY"
+    }
+  ],
+  "anchor_paper": {
+    "citation_key": "He2025TiPGAN",
+    "doi": "10.1016/j.cad.2025.103866",
+    "role": "PRIMARY_IMAGE_CONDITIONED_TILEABILITY"
+  },
+  "dataset_manifest": [
+    {
+      "source_originals": 370,
+      "train_independent": 296,
+      "validation_independent": 37,
+      "test_independent": 37,
+      "arm_A_derived_train": 944,
+      "arm_B_derived_train": 1280,
+      "arm_B_crops": 336,
+      "verified_semantic_prompts": 0
+    }
+  ],
+  "novelty_hypotheses": [
+    {
+      "hypothesis": "Trade-off between boundary continuity and image fidelity/diversity is measurable using matched source-aware three-seed ablations",
+      "status": "SUPPORTED_AS_TRADEOFF_NOT_SUPERIORITY"
+    }
+  ],
+  "experiment_protocol": {
+    "seeds": [
+      42,
+      123,
+      2025
+    ],
+    "internal_training_runs": 24,
+    "internal_heldout_test_runs": 6,
+    "heldout_real_images": 37,
+    "training_preprocessed_arm": "B",
+    "text_input_model_name": "Endek T2I"
+  },
+  "runs": [],
+  "objective_imrad_map": [],
+  "sentence_evidence_map": [],
+  "source_reuse_log": [],
+  "bibtex_section_crosswalk": [
+    {
+      "section": "INTRODUCTION",
+      "keys": [
+        "Arfan2024EndekSustainability",
+        "He2025TiPGAN",
+        "Hendrawati2024EndekStableDiffusion",
+        "Karras2020LimitedDataGAN",
+        "BaliProv2026YoungWeavers",
+        "Purnawan2026EndekLoRA",
+        "RodriguezPardo2023SeamlessGAN",
+        "Tao2022DFGAN",
+        "Wahid2025BatikDiffusion"
+      ],
+      "bibtex_file": "bibliography/introduction.bib"
+    }
+  ],
+  "explicit_exceptions": [
+    "TiPGAN is an image-conditioned reference, not text-to-image; its experimental benchmark is not converged.",
+    "2024 TEMATIK article author order in PDF differs from Garuda/SciSpace metadata; use published PDF order in this draft.",
+    "Proceedings references DF-GAN and Karras and provincial government source are needed for specific technical/cultural claims despite strict journal-only preference.",
+    "Original experimental claims do not use fabricated external literature citations.",
+    "APA author–date citations are preparatory; final IEEE Access requires numbered citations."
+  ],
+  "issues": [
+    {
+      "id": "ISSUE-001",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Complete fair converged TiPGAN benchmark"
+    },
+    {
+      "id": "ISSUE-002",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Verify third DF-GAN held-out seed and provenance"
+    },
+    {
+      "id": "ISSUE-003",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Independent prompt semantics and Endek expert review"
+    },
+    {
+      "id": "ISSUE-004",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Source count and 37-image test uncertainty cannot prove broad generalization"
+    },
+    {
+      "id": "ISSUE-005",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Architectural novelty beyond prior EndekGAN not demonstrated"
+    },
+    {
+      "id": "ISSUE-006",
+      "severity": "MINOR",
+      "status": "OPEN",
+      "description": "Resolve 2024 TEMATIK conflicting bibliographic author order on Mendeley import"
+    }
+  ],
+  "artifacts": [
+    "manuscript/INTRODUCTION_APA7_ENDEK_T2I.md",
+    "bibliography/introduction.bib",
+    "bibliography/references_master.bib",
+    "manuscript/INTRODUCTION_CITATION_AUDIT.md"
+  ],
+  "readiness": "INTRODUCTION DRAFT COMPLETE; IEEE ACCESS MANUSCRIPT NOT SUBMISSION READY"
+}
