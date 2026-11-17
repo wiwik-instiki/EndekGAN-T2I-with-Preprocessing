@@ -1,0 +1,13 @@
+arm,split,category,derived_records,independent_sources,crop_records,semantic_prompt_verified,expert_verified
+B,train,dekoratif,320,90,84,0,0
+B,train,fauna,320,42,84,0,0
+B,train,flora,320,118,84,0,0
+B,train,geometris,320,46,84,0,0
+B,val,dekoratif,11,11,0,0,0
+B,val,fauna,6,6,0,0,0
+B,val,flora,14,14,0,0,0
+B,val,geometris,6,6,0,0,0
+B,test,dekoratif,11,11,0,0,0
+B,test,fauna,5,5,0,0,0
+B,test,flora,15,15,0,0,0
+B,test,geometris,6,6,0,0,0

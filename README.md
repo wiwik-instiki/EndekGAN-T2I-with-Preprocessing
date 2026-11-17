@@ -10,6 +10,10 @@ This project investigates the generation of **Balinese Endek-like textile motifs
 
 The key design question is not just whether a GAN can synthesize Endek-like images, but whether *text-conditioned synthesis* can balance semantic guidance, image fidelity, motif diversity and periodic border continuity on a source-audited small dataset.
 
+## IEEE Access evidence snapshot — 17 November 2026
+
+The earliest sections below preserve the historical experiment state at the time of writing. **Use this latest source-audited snapshot for manuscript decisions**: [primary TiPGAN and supporting DF-GAN positioning](docs/NOVELTY_AND_EXPERIMENT_READINESS_GATE_20261117.md), [preprocessed dataset methods](docs/DATASET_PREPROCESSED_IEEE_20261117.md), [Introduction research draft](docs/INTRODUCTION_REFERENCE_GAP_NOVELTY_20261117.md), [current verified/pending external test outcomes](results/DFGAN_ACTUAL_TEST_AND_PENDING_20261117.csv), and [evidence status](results/EVIDENCE_STATUS_IEEE_ACCESS_20261117.json). The complete protected experimental evidence package remains on the private local D drive, not publicly in GitHub. Do not infer completion of the third DF-GAN heldout test or a converged TiPGAN benchmark from this README. No fabricated values; no original photos, private prompts or weights are published.
+
 ## 1. From primary journal reference to testable novelty
 
 | Role | Paper | Exact limitation / complementary scope | Relation to V2 |
