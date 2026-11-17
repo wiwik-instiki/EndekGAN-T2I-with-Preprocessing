@@ -5,7 +5,7 @@
 
 The word *EndekGAN-T2I* remains a historical model/repository identifier for reproducibility, but should **not** be the lead branding of the new IEEE Access manuscript. Proposed working title:
 
-**Source-Aware Preprocessing and Fidelity–Tileability Trade-offs in Text-Guided Balinese Textile Motif Generation**
+**Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs**
 
 ## Data facts from V2 manifest
 - 370 independent source photos; train = 296, validation = 37, held-out test = 37.

@@ -3,11 +3,13 @@
 ## Fixed publication terminology
 
 - **Method name:** Endek T2I. No V2, version numbers, or EndekGAN-T2I branding in the proposed scientific method name.
-- **Working article title:** Limited-Data Text-to-Image Synthesis of Balinese Endek Motifs: Source-Aware Preprocessing and Fidelity–Tileability Analysis.
+- **Working article title:** Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs.
 - **Historical original paper/repository:** EndekGAN-T2I (cited as prior work rather than misrepresented as newly invented).
 - **Internal experiment labels:** V2 in directory or legacy script names is permitted only for reproducibility; do not use V2 as a method identifier or title suffix.
 
 ## Culturally grounded educational significance
+
+**The cultural-preservation and artisan-regeneration argument belongs in the Introduction and Discussion, not in the paper title.** The proposed method name remains **Endek T2I**, without a V2 suffix. Source-aware preprocessing and seam regularization are implemented experimental components, while strong architectural novelty beyond prior EndekGAN remains unproven.
 
 Balinese Endek weaving is a traditional Indonesian cultural expression that integrates visual motifs, specialized artisanship and local identity. The Government of Bali actively supports its protection, including the 2021 Endek usage policy and communal intellectual property registry EBT.12.2020.0000085 (recorded 22 December 2020). In an official government release dated 30 May 2026, the Balinese Provincial Government highlighted a serious decline in young people entering the weaving profession, placing the intergenerational transmission of craft knowledge under pressure. The defensible claim is **threatened continuity of craftsmanship and artisan regeneration**, not a proven assertion that the entire Endek weaving tradition is already nearly extinct.
 

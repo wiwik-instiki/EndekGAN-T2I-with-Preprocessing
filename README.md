@@ -1,6 +1,6 @@
-# EndekGAN-T2I with Preprocessing — V2 Research Evidence
+# Endek T2I: Preprocessing and Seam-Regularized Balinese Motif Synthesis
 
-**Provisional IEEE Access title:** **Limited-Data Text-to-Image Synthesis of Balinese Endek Motifs: Source-Aware Preprocessing and Fidelity–Tileability Analysis**
+**Provisional IEEE Access title:** **Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs**
 
 **Research evidence snapshot: 17 November 2026.** Training and internal three-seed tests are complete; external comparisons and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the original private Endek photographs or checkpoints.
 
