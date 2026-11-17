@@ -1,10 +1,18 @@
 # EndekGAN-T2I with Preprocessing — V2 Research Evidence
 
-**Provisional IEEE Access title:** **Source-Aware EndekGAN-T2I: Fidelity–Tileability Trade-offs in Text-Guided Balinese Textile Motif Generation**
+**Provisional IEEE Access title:** **Source-Aware Preprocessing and Fidelity–Tileability Trade-offs in Text-Guided Balinese Textile Motif Generation**
 
 **Research evidence snapshot: 17 November 2026.** Training and internal three-seed tests are complete; external comparisons and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the original private Endek photographs or checkpoints.
 
 > **Separate studies:** This is the **preprocessing-controlled V2 study**, maintained separately from the [earlier EndekGAN-T2I repository](https://github.com/wiwik-instiki/EndekGAN-T2I). The earlier study is not overwritten or re-labelled as V2. Multilingual text conditioning and seam regularization existed in that study; they are **not claimed as newly invented** here.
+
+## Scientific gate: insufficient independent Endek source data
+
+**Do not submit as dataset sufficiency demonstrated.** The 1,280 Arm B training files correspond to **296 unique independent source images** (370 independent images across train/validation/test). Training augmentation and crops cannot replace additional independent observations. The held-out test has only 37 real images, with just 5–15 per class. The first manuscript was rejected, and the research team identified small dataset size as a central weakness. A new title or enhanced augmentation alone cannot establish independent-data generalization.
+
+Before final manuscript submission, obtain a materially larger, copyright-cleared collection of authentic Endek motifs across the four verified classes; audit duplicate and near-duplicate groups **before** splitting; rerun the preprocessing protocol, train all compared models with matched budgets and at least 3 seeds, and evaluate on independent, diverse test sources with uncertainty analysis. Maintain a locked external or provenance-distinct test domain where feasible. Record provenance and permissions and independently assess text-prompt semantic fidelity and cultural authenticity. Do not assert an arbitrary IEEE-required minimum image count: adequacy must be supported by performance saturation, diversity coverage, and confidence intervals.
+
+Current figures and tables are **V2 exploratory evidence only**, not final expanded-dataset results. Track actions in [Dataset adequacy and novelty readiness](docs/IEEE_ACCESS_DATASET_AND_NOVELTY_GATE.md).
 
 ## Research logic: literature → gap → actual mechanism → evidence
 

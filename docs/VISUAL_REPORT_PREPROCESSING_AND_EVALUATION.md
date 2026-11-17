@@ -1,6 +1,6 @@
 # IEEE Access Visual Evidence: Preprocessing and Evaluation
 
-Working title: EndekGAN-T2I: Evaluating the Fidelity–Tileability Trade-off in Text-Conditioned Balinese Endek Motif Generation.
+Working title: Source-Aware Preprocessing and Fidelity–Tileability Trade-offs in Text-Guided Balinese Textile Motif Generation.
 
 ## Preprocessing figures and tables
 
