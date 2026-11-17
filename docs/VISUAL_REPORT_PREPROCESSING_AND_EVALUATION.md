@@ -1,6 +1,6 @@
 # IEEE Access Visual Evidence: Preprocessing and Evaluation
 
-Working title: Source-Aware Preprocessing and Fidelity–Tileability Trade-offs in Text-Guided Balinese Textile Motif Generation.
+Working title: Limited-Data Text-to-Image Synthesis of Balinese Endek Motifs: Source-Aware Preprocessing and Fidelity–Tileability Analysis. The proposed method is named Endek T2I (no V2 suffix).
 
 ## Preprocessing figures and tables
 
