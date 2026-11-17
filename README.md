@@ -135,6 +135,11 @@ The official DF-GAN NetG/NetD/NetC architecture, explicitly adapted to use **exa
 
 **Do not place pilot-only values next to the held-out three-seed EndekGAN FID/KID table.** TiPGAN is image-reference-based and cannot be evaluated for prompt adherence it does not consume.
 
+
+## DF-GAN–MiniLM held-out evaluation on V2
+
+One PRIVATE Kaggle run now has actual held-out results for adapted DF-GAN–MiniLM seed 42 (37 real images, 256 synthetic images). Pooled FID 250.430; KID 0.169826; seam gap 0.117372. Preliminary, single seed. See [validated evaluation report and Figure 15](benchmarks/DFGAN_MiniLM_HELDOUT_SEED42.md) and [CSV](results/DFGAN_EndekGAN_heldout_seed42.csv). TiPGAN's image-conditioned modality remains a separate comparison.
+
 ## 7. Ethics, copyright and claims
 
 Balinese Endek is cultural heritage and a design context, not a license to declare synthetic outputs authentic traditional artifacts. The present experimental captions are structured design descriptions and **are not independently expert-validated semantic ground truth**. An expert-blinded design study and more truly independent source images are needed. Do not release private Endek imagery, hidden source names or trained weights without permission. This repository is an **experimental research record**; no journal acceptance, peer review endorsement or proven heritage impact is claimed.
