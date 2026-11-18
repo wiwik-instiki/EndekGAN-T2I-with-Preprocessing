@@ -1,0 +1,52 @@
+{
+  "title": "IEEE Access Methods Figures 1–5",
+  "date": "2026-11-18",
+  "note": "Curated illustrative figure panels, not a release of complete private source images, captions, or checkpoints",
+  "figures": [
+    {
+      "figure": 1,
+      "path": "figures/manuscript_methods_2026/figure_01_arm_b_actual_motif_examples.png",
+      "width": 1292,
+      "height": 1128,
+      "bytes": 2079890,
+      "sha256": "ece715c119389ae017accd4a6539d575746d6998028424d6ee687929b41d2621",
+      "caption": "Representative preprocessed Arm B training images across flora, fauna, decorative and geometric motif categories (three samples each). No GAN-generated images."
+    },
+    {
+      "figure": 2,
+      "path": "figures/manuscript_methods_2026/figure_02_source_aware_preprocessing.png",
+      "width": 1448,
+      "height": 944,
+      "bytes": 1264102,
+      "sha256": "08390946d45a575eadebb778cdca0207e5e612f3bfabacb2343f372dff04efb0",
+      "caption": "Source-aware data partitioning and preprocessing for Arm A (full-frame control) and Arm B (crop-enriched treatment)."
+    },
+    {
+      "figure": 3,
+      "path": "figures/manuscript_methods_2026/figure_03_experimental_framework.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1760345,
+      "sha256": "f1a67cb18b4553ec85a0da8e0ff3f30ebb0e4db96c90beefcbacf8772ffef6bc",
+      "caption": "Source-aware experimental framework of Endek T2I, RQ1/RQ2 ablations, DF-GAN–MiniLM text-conditioned comparison and TiPGAN image-conditioned reference."
+    },
+    {
+      "figure": 4,
+      "path": "figures/manuscript_methods_2026/figure_04_conditional_gan_architecture.png",
+      "width": 1448,
+      "height": 977,
+      "bytes": 1866922,
+      "sha256": "3811c171fbf477a476c1f7248afe3ade16baf18049d160c2b162f10b754e651f",
+      "caption": "Implemented Endek T2I conditional GAN with multilingual text and class conditioning, separate generator/discriminator projection paths, distinct losses and optimization."
+    },
+    {
+      "figure": 5,
+      "path": "figures/manuscript_methods_2026/figure_05_seam_penalty_edge_gap.png",
+      "width": 3268,
+      "height": 1602,
+      "bytes": 409031,
+      "sha256": "9afb853466d65e96b6f8731eaba5d876c1f3038a8afe67299878bb60893c7aa4",
+      "caption": "Schematic comparison of four-pixel opposing-border seam penalty during training and one-pixel opposing-edge gap measured at held-out evaluation."
+    }
+  ]
+}

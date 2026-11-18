@@ -2,11 +2,54 @@
 
 **Provisional IEEE Access title:** **Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs**
 
-**Research evidence snapshot: 17 November 2026.** Training and internal three-seed tests are complete; external comparisons and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the original private Endek photographs or checkpoints.
+**Research evidence snapshot: 17 November 2026.** Training and internal three-seed tests are complete; external comparisons and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the full private Endek photograph collection or checkpoints. The selected Figure 1 montage contains actual training-source examples; authors must verify public redistribution permissions.
 
 > **Separate studies:** This is the **preprocessing-controlled V2 study**, maintained separately from the [earlier EndekGAN-T2I repository](https://github.com/wiwik-instiki/EndekGAN-T2I). The earlier study is not overwritten or re-labelled as V2. Multilingual text conditioning and seam regularization existed in that study; they are **not claimed as newly invented** here.
 
 **Publication nomenclature:** The method in this article is **Endek T2I** (exact name; **no V2 suffix**). Names containing V2 in legacy experiment directories, kernel IDs, charts, or archive filenames are internal traceability labels and are **not** the scientific method name. Earlier [EndekGAN-T2I](https://github.com/wiwik-instiki/EndekGAN-T2I) remains a separate prior work. The article uses verifiable cultural-preservation motivation without claiming that all Endek weaving has already disappeared. See [cultural positioning and naming policy](docs/CULTURAL_PRESERVATION_AND_ENDEK_T2I_NAMING.md).
+
+<!-- BEGIN IEEE ACCESS METHODOLOGY FIGURES 1-5 -->
+## IEEE Access manuscript figures: dataset, framework, architecture and seam evaluation
+
+The five methodological figures below correspond to the revised **Endek T2I** manuscript. Figure 1 uses actual preprocessed Arm B training-source examples, **not generated motifs**. Figures 2–5 explain experimental procedures and model structure; they are schematic, not results. These panels do **not** establish expert-certified cultural authenticity or completed TiPGAN benchmarks.
+
+> **Provenance and publication note.** The Figure 1 montage contains twelve selected source-derived training images, not the complete dataset. Public redistribution rights for the illustrated textile photographs must be confirmed by the authors. No private manifests, prompt text, full datasets, model checkpoints, or credentials are included.
+
+### Figure 1
+
+<p align="center"><a href="figures/manuscript_methods_2026/figure_01_arm_b_actual_motif_examples.png"><img src="figures/manuscript_methods_2026/figure_01_arm_b_actual_motif_examples.png" alt="Endek T2I manuscript Figure 1" width="780"></a></p>
+
+*Fig. 1. Representative preprocessed Arm B training images across flora, fauna, decorative and geometric motif categories (three samples each). No GAN-generated images.*
+
+### Figure 2
+
+<p align="center"><a href="figures/manuscript_methods_2026/figure_02_source_aware_preprocessing.png"><img src="figures/manuscript_methods_2026/figure_02_source_aware_preprocessing.png" alt="Endek T2I manuscript Figure 2" width="780"></a></p>
+
+*Fig. 2. Source-aware data partitioning and preprocessing for Arm A (full-frame control) and Arm B (crop-enriched treatment).*
+
+### Figure 3
+
+<p align="center"><a href="figures/manuscript_methods_2026/figure_03_experimental_framework.png"><img src="figures/manuscript_methods_2026/figure_03_experimental_framework.png" alt="Endek T2I manuscript Figure 3" width="780"></a></p>
+
+*Fig. 3. Source-aware experimental framework of Endek T2I, RQ1/RQ2 ablations, DF-GAN–MiniLM text-conditioned comparison and TiPGAN image-conditioned reference.*
+
+### Figure 4
+
+<p align="center"><a href="figures/manuscript_methods_2026/figure_04_conditional_gan_architecture.png"><img src="figures/manuscript_methods_2026/figure_04_conditional_gan_architecture.png" alt="Endek T2I manuscript Figure 4" width="780"></a></p>
+
+*Fig. 4. Implemented Endek T2I conditional GAN with multilingual text and class conditioning, separate generator/discriminator projection paths, distinct losses and optimization.*
+
+### Figure 5
+
+<p align="center"><a href="figures/manuscript_methods_2026/figure_05_seam_penalty_edge_gap.png"><img src="figures/manuscript_methods_2026/figure_05_seam_penalty_edge_gap.png" alt="Endek T2I manuscript Figure 5" width="780"></a></p>
+
+*Fig. 5. Schematic comparison of four-pixel opposing-border seam penalty during training and one-pixel opposing-edge gap measured at held-out evaluation.*
+
+The method employs 296 independent training sources plus 37 validation and 37 held-out test sources. Arm A has 944 training views; Arm B adds 336 training-only crops to yield 1,280 views. The generator and discriminator use separate 256-dimensional condition projectors. RQ1 compares crop exposure; RQ2 contrasts seam regularization against a no-seam control. The seam objective uses four-pixel strips, whereas held-out edge-gap uses the outermost pixel only. TiPGAN accepts a reference image, not a language prompt.
+
+The diagrams describe the **Methods** protocol, not a completed claim of benchmark superiority. In particular, the earlier documented 30-iteration TiPGAN pilot is distinct from later Kaggle training attempts; full TiPGAN results require separate verified evaluation. See the [file manifest](figures/manuscript_methods_2026/MANIFEST.json) for figure dimensions and SHA-256 checksums.
+
+<!-- END IEEE ACCESS METHODOLOGY FIGURES 1-5 -->
 
 ## Introduction draft and APA 7 BibTeX (research version)
 
