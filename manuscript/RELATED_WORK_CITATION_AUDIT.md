@@ -18,6 +18,8 @@ Four subsections: Endek/Batik text-image generation; seamless textile texture sy
 
 **Publication style:** APA 7 author-date is user-requested for manuscript editing. IEEE Access official submission style is IEEE numerical; convert after references are managed. IEEE also requires disclosure of AI-generated manuscript text when applicable.
 
-**Related Work table:** Table 1 contains 8 studies; each entry labels conditioning and relevance but does not pretend all baselines were executed on the same Endek test set.
+**Related Work table:** Table I contains 8 studies; each entry labels conditioning and relevance but does not pretend all baselines were executed on the same Endek test set.
 
 **Readiness:** Section draft and BibTeX source identities verified; full-paper author review and IEEE final format remain pending.
+
+Global table numbering: Related Work uses TABLE I. Subsequent dataset and experimental table numbers must be reconciled sequentially when the full article is assembled; CSV filenames are inventory names, not publication labels.
