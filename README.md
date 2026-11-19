@@ -2,7 +2,7 @@
 
 **Provisional IEEE Access title:** **Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs**
 
-**Research evidence snapshot: 17 November 2026.** Training and internal three-seed tests are complete; external comparisons and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the full private Endek photograph collection or checkpoints. The selected Figure 1 montage contains actual training-source examples; authors must verify public redistribution permissions.
+**Research evidence snapshot: 20 November 2026 (historical 17 November snapshot retained).** Training and internal three-seed tests are complete; adapted DF-GAN three-seed held-out tests are verified. Four TiPGAN train-only fits are complete, but independent TiPGAN tests and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the full private Endek photograph collection or checkpoints. The selected Figure 1 montage contains actual training-source examples; authors must verify public redistribution permissions.
 
 > **Separate studies:** This is the **preprocessing-controlled V2 study**, maintained separately from the [earlier EndekGAN-T2I repository](https://github.com/wiwik-instiki/EndekGAN-T2I). The earlier study is not overwritten or re-labelled as V2. Multilingual text conditioning and seam regularization existed in that study; they are **not claimed as newly invented** here.
 
@@ -114,7 +114,7 @@ Means ± **sample SD of three training seeds**, using the **same 37 original hel
 ### External comparisons — verify task equivalence
 
 - **Adapted DF-GAN–MiniLM:** full training for seeds **42, 123 and 2025** completed. Independent held-out evaluation was verified for **42** (pooled FID 250.430, KID 0.169826) and **123** (FID 276.346, KID 0.180337). The 2025 held-out evaluation was subsequently archived and verified on 18 November 2026 (pooled FID 270.312, KID 0.180924). This does not imply that the historical November 17 evidence tables have been updated. Report three-seed statistics only after checking and synchronizing their source files.
-- **TiPGAN:** official implementation completed a **30-iteration one-image training pilot** only. TiPGAN accepts **a reference texture image**, not a text description. Compare seam/texture properties on an explicitly separate image-conditioned protocol; do not assign text-compliance scores.
+- **TiPGAN:** the November 17 snapshot described a 30-iteration pilot; subsequent training completed four single-image, train-source-only runs (three at 50,000 iterations and geometric at 48,000 with early stopping). TiPGAN accepts **a reference texture image**, not a text description. Compare seam/texture properties on an explicitly separate image-conditioned protocol; do not assign text-compliance scores.
 - Reference-image leakage prevention: TiPGAN must **not** train/condition on held-out test images while being reported as independent distributional testing.
 - Caption fidelity and cultural/weaving suitability require additional independent evaluation of generated images by appropriately recruited Endek experts.
 
@@ -128,6 +128,14 @@ Means ± **sample SD of three training seeds**, using the **same 37 original hel
 
 [View Three-seed generated motif montage](figures/fig14_actual_B_generated_motifs_3seed_comparison.png)
 
+
+### Verified experimental addendum (20 November 2026)
+
+[DF-GAN three-seed comparison](benchmarks/DFGAN_3SEED_V2_HELDOUT_FINAL.md) | [Nine matched held-out rows](results/DFGAN_EndekGAN_real_matched_three_seeds.csv) | [TiPGAN four-category train-only status](benchmarks/TIPGAN_FOUR_CLASS_TRAINING_20261120.md) | [TiPGAN CSV](results/TIPGAN_FOUR_CLASS_TRAINING_STATUS_20261120.csv).
+
+Adapted DF-GAN three-seed held-out measurements are complete, although the test reference set is small and the model is not canonical DAMSM-conditioned DF-GAN. TiPGAN finished four training-only single-reference-image experiments; geometric stopped by training-only early stopping at iteration 48,000. No independent TiPGAN quality or text-compliance scores are claimed. Numerical metrics and chart revisions are published; raw Endek photos, raw private prompts and model weights are not.
+
+[Public/private artifact policy](docs/EXPERIMENT_RELEASE_POLICY_20261120.md).
 
 ## 5. Dataset adequacy and scientific gate
 

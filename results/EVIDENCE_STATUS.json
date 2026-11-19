@@ -20,10 +20,49 @@
   "pending_test_models": 18,
   "actual_matched_test_comparison": true,
   "TiPGAN_V2_test": "NOT_RUN",
-  "DFGAN_V2_test": "NOT_RUN",
+  "DFGAN_V2_test": "THREE_SEEDS_HELDOUT_EVALUATION_COMPLETE",
   "test_metrics_status": "EXPLORATORY_ONLY",
   "raw_images_published": false,
   "paper_readiness": "INCOMPLETE_EXTERNAL_BASELINES_AND_MULTI_SEED_TESTS",
   "B_transformer_and_seam_three_seed_test_complete": true,
-  "caution": "All FID/KID test scores exploratory: just 37 independent reference images."
+  "caution": "All FID/KID test scores exploratory: just 37 independent reference images.",
+  "DFGAN_V2_training_seeds_verified": [
+    42,
+    123,
+    2025
+  ],
+  "DFGAN_V2_test_seeds_verified": [
+    42,
+    123,
+    2025
+  ],
+  "external_three_seed_comparison": "SOURCE_BACKED_EXPLORATORY_NO_SIGNIFICANCE_CLAIM",
+  "latest_verified_snapshot": "2026-11-20",
+  "TiPGAN_train_only_20261120": {
+    "method": "Official image-conditioned single-reference-image TiPGAN",
+    "classes": [
+      {
+        "class": "flora",
+        "final_iterations": 50000,
+        "status": "FINISHED"
+      },
+      {
+        "class": "fauna",
+        "final_iterations": 50000,
+        "status": "FINISHED"
+      },
+      {
+        "class": "decorative",
+        "final_iterations": 50000,
+        "status": "FINISHED"
+      },
+      {
+        "class": "geometric",
+        "final_iterations": 48000,
+        "status": "EARLY_STOPPED"
+      }
+    ],
+    "independent_test_metrics": false,
+    "train_only_early_stop_proxy_is_validation": false
+  }
 }

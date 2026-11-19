@@ -1,0 +1,2 @@
+﻿method,n_independent_training_seeds,pooled_FID_mean,pooled_FID_sd,pooled_KID_mean,pooled_KID_sd,class_macro_FID_mean,class_macro_FID_sd,class_macro_KID_mean,class_macro_KID_sd,mean_seam_gap_mean,mean_seam_gap_sd,LPIPS_diversity_mean,LPIPS_diversity_sd
+DF-GAN-MiniLM adapted,3,265.6960957845052,13.560522140580828,0.17702886958916983,0.006245157057212234,320.5231221516927,11.00306618532717,0.20558340226610503,0.0061346150580785805,0.1098388379032258,0.018879840428697187,0.4426797370892018,0.03471918734426635

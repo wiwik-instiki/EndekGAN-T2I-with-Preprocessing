@@ -1,0 +1,5 @@
+category,execution_platform,final_iterations,max_iterations,training_status,terminal_checkpoint_verified,heldout_test_performed
+flora,Kaggle,50000,50000,FINISHED,yes,no
+fauna,local GPU,50000,50000,FINISHED,yes,no
+decorative,local GPU,50000,50000,FINISHED,yes,no
+geometric,Kaggle,48000,50000,EARLY_STOPPED,yes,no
