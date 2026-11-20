@@ -26,3 +26,7 @@ figures/comparisons/
 .env*
 *.key
 *.pem
+
+# Exact curated 13-paper-figure export (source photos and private datasets remain ignored)
+!figures/paper_IEEE_Access_720dpi_20261120/
+!figures/paper_IEEE_Access_720dpi_20261120/Fig_??_Endek_T2I_720dpi.png

@@ -1,14 +1,42 @@
 # Endek T2I: Preprocessing and Seam-Regularized Balinese Motif Synthesis
 
-**Provisional IEEE Access title:** **Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs**
+**IEEE Access submission manuscript title (20 November 2026):** **Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs**
 
-**Research evidence snapshot: 20 November 2026 (historical 17 November snapshot retained).** Training and internal three-seed tests are complete; adapted DF-GAN three-seed held-out tests are verified. Four TiPGAN train-only fits are complete, but independent TiPGAN tests and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the full private Endek photograph collection or checkpoints. The selected Figure 1 montage contains actual training-source examples; authors must verify public redistribution permissions.
+**Research evidence snapshot: 20 November 2026 (historical 17 November snapshot retained).** Internal training, three-seed held-out Arm A/B evaluations, and adapted DF-GAN three-seed held-out tests are verified. Four TiPGAN train-only fits are complete, but independent TiPGAN tests and cultural/semantic validation remain incomplete. This repository contains source-backed research summaries, program code, notebooks, diagrams, tables and figures, **not** the full private Endek photograph collection or checkpoints. The selected Figure 1 montage contains actual training-source examples; authors must verify public redistribution permissions.
 
 > **Separate studies:** This is the **preprocessing-controlled V2 study**, maintained separately from the [earlier EndekGAN-T2I repository](https://github.com/wiwik-instiki/EndekGAN-T2I). The earlier study is not overwritten or re-labelled as V2. Multilingual text conditioning and seam regularization existed in that study; they are **not claimed as newly invented** here.
 
 **Publication nomenclature:** The method in this article is **Endek T2I** (exact name; **no V2 suffix**). Names containing V2 in legacy experiment directories, kernel IDs, charts, or archive filenames are internal traceability labels and are **not** the scientific method name. Earlier [EndekGAN-T2I](https://github.com/wiwik-instiki/EndekGAN-T2I) remains a separate prior work. The article uses verifiable cultural-preservation motivation without claiming that all Endek weaving has already disappeared. See [cultural positioning and naming policy](docs/CULTURAL_PRESERVATION_AND_ENDEK_T2I_NAMING.md).
 
-**Navigation:** [Code and data availability](#code-and-data-availability-ieee-access) · [Research framework](#1-research-framework-and-comparison-logic) · [Dataset](#2-dataset-and-source-aware-preprocessing) · [Figures 1–5](#3-ieee-access-manuscript-figures-figs-15) · [Results and IEEE figures 6–11](#4-ieee-access-results-and-comparative-evaluation) · [Publication gate](#5-dataset-adequacy-and-scientific-gate) · [Reproducibility](#7-reproducibility-and-file-organization) · [Manuscript references](#8-manuscript-and-bibliography-resources)
+**Navigation:** [Latest verified evidence](#0-manuscript-aligned-evidence-release-20-november-2026) · [All final figures](figures/paper_IEEE_Access_720dpi_20261120/README.md) · [Code and data availability](#code-and-data-availability-ieee-access) · [Research framework](#1-research-framework-and-comparison-logic) · [Dataset](#2-dataset-and-source-aware-preprocessing) · [Figures 1–5](#3-ieee-access-manuscript-figures-figs-15) · [Results and IEEE figures 6–13](#4-ieee-access-results-and-comparative-evaluation) · [Publication gate](#5-dataset-adequacy-and-scientific-gate) · [Reproducibility](#7-reproducibility-and-file-organization) · [Manuscript references](#8-manuscript-and-bibliography-resources)
+
+## 0. Manuscript-aligned evidence release (20 November 2026)
+
+**Paper:** *Source-Aware Preprocessing and Seam-Regularized Text-to-Image Synthesis of Balinese Endek Motifs.* The article describes **Endek T2I**; suffixes such as V2 in internal filenames are experiment identifiers, not a new method name. The earlier EndekGAN-T2I study is a separate predecessor, not the dataset or experiment evidence source for this article.
+
+The article reports **three contributions (C1–C3) answering two research questions (RQ1–RQ2)**.
+
+| Contribution | Corresponding RQ | Evidence confirmed by the completed manuscript |
+|---|---|---|
+| **C1 — Source-aware preprocessing ablation** | RQ1 | Fixed 296 original training sources; Arm A 944 full-frame/augmented training views versus Arm B 1,280 views including 336 train-only crops. Checkpoint-validation KID fell from 0.23041 to 0.12669 (no seam) and from 0.24581 to 0.18445 (seam). **Independent held-out evaluation** shows lower pooled FID and KID for Arm B in **6/6 model–seed comparisons** and lower class-wise FID and KID in **22/24 class–seed comparisons** for each metric. |
+| **C2 — Matched fidelity–boundary–diversity evaluation** | RQ2 | In the controlled no-seam/proposed comparison, proposed one-pixel border gap improved from **0.08993 to 0.05338** (−40.65%), while pooled FID worsened from **254.474 to 302.127**, KID from **0.12848 to 0.19085**, and LPIPS diversity decreased from **0.25630 to 0.03315**. These values reveal a trade-off, **not universal generative superiority**. |
+| **C3 — Traceable empirical protocol and failure diagnostics** | RQ1/RQ2 | Six Arm A validation-selected checkpoints and **1,536 generated images** were synchronized; **1,617/1,617 output files matched their Kaggle SHA-256 manifest**, with zero missing/corrupt files. Analysis includes source-group independence checks, qualitative failures, per-class performance, tiling and near-collapse LPIPS warnings. |
+
+**Dataset and sampling:** 370 original source photographs divided **296 train / 37 validation / 37 held-out test**. Source SHA-256 intersection between partitions is zero; the 944 and 1,280 views are derived observations, not independent acquired images. Test references are unequal by class (**flora 15, fauna 5, decorative 11, geometric 6**) while each synthetic run uses 64 generated samples per class (256 total). Pooled and class-wise FID/KID are *exploratory* under the small real reference set and class-mixture mismatch.
+
+**Controls and limitations:** the paired internal seam/no-seam variants control architecture and configured settings, but Arm A/B and external adapted DF-GAN differ in actual training budgets and/or architectures; do **not** label them fully compute matched. Near-duplicate visual screening flagged one train–validation candidate, manually judged distinct, but independent physical-acquisition records were unavailable. Very low proposed-model LPIPS (especially seed 123) warns of attenuated diversity; this is not mechanistic proof of mode collapse. Figure 11 documents four TiPGAN training-only image-conditioned fits, **not comparable held-out text-to-image results**. Expert cultural authenticity, prompt adherence and weaveability remain unverified.
+
+### Final figures and public evidence
+
+All **13 manuscript figures** are indexed in the [720-dpi figure package](figures/paper_IEEE_Access_720dpi_20261120/README.md), including the [image/checksum manifest](figures/paper_IEEE_Access_720dpi_20261120/FIGURE_MANIFEST.csv). Figure 1 contains already-public source-derived examples; redistribution permission must still be confirmed by the image-rights holder. Figures 12–13 are newly rendered from the verified class-wise numeric data at native 720 dpi, and may differ cosmetically from the DOCX raster artwork. For panels upscaled from earlier raster sources, 720 dpi is output raster density, **not restored optical detail**.
+
+- [Validated Arm A/B held-out pooled FID/KID (all six model–seed pairs)](results/Arm_A_vs_B_heldout_pooled_20261120.csv)
+- [Validated Arm A/B held-out class-wise FID/KID (30 rows, including pooled)](results/Arm_A_vs_B_heldout_classwise_20261120.csv)
+- [Sanitized Kaggle output integrity audit](results/ARM_A_KAGGLE_AUDIT_PUBLIC_20261120.json)
+- [Contribution–RQ–evidence manuscript alignment](docs/MANUSCRIPT_ALIGNMENT_C1_C2_C3_20261120.md)
+- [Figures 1–13 folder](figures/paper_IEEE_Access_720dpi_20261120/README.md)
+
+Full private source images, prompt-linked metadata, all checkpoints and source-level provenance remain excluded from the public release. Research figures and aggregate results support auditability, not unaided full training replication. **Do not use the earlier EndekGAN-T2I repository as the evidence source for this study.**
 
 ## Code and data availability (IEEE Access)
 
@@ -92,9 +120,9 @@ The diagrams describe the **Methods** protocol, not a completed claim of benchma
 
 <!-- END IEEE ACCESS METHODOLOGY FIGURES 1-5 -->
 
-## 4. IEEE Access results and comparative evaluation
+## 4. IEEE Access results and comparative evaluation (Figs. 6–13)
 
-**Exact manuscript cross-reference (20 November 2026).** This section follows the numbering of Section IV in the IEEE Access Word manuscript: **Tables V–IX and Figures 6–11**. Figures 1–5 belong to the Methods section. All new qualitative panels are copied byte-for-byte from the actual figures inserted in the manuscript; older panels retained elsewhere in the repository are supplementary visualizations.
+**Exact manuscript cross-reference (20 November 2026).** This section follows the numbering of Section IV in the IEEE Access Word manuscript: **Tables V–XI and Figures 6–13**. Figures 1–5 belong to the Methods section. All new qualitative panels are copied byte-for-byte from the actual figures inserted in the manuscript; older panels retained elsewhere in the repository are supplementary visualizations.
 
 ### 4.1 Experimental coverage and evidence (Table V)
 
@@ -104,7 +132,7 @@ Two research questions structure the comparison: RQ1 addresses source-aware crop
 
 | Experimental arm | Training exposure | Executed trainings | Held-out evaluation |
 |---|---|---|---|
-| Arm A (full-frame controls) | 944 derived train views, 296 original training sources | 2 settings × 3 seeds = 6 | Validation KID comparison only |
+| Arm A (full-frame controls) | 944 train-derived views from 296 original training sources | 2 settings × 3 seeds = 6 | **6 held-out FID/KID and diversity diagnostics completed and SHA-256 validated** |
 | Arm B (crop enriched) | 1,280 derived train views, same 296 sources | 6 settings × 3 seeds = 18 | 6 matched held-out tests for no-seam/proposed |
 | Adapted DF-GAN–MiniLM | Source-grouped Endek set | 3 training seeds | 3 held-out tests, 37 real and 256 synthetic each |
 | TiPGAN image-conditioned | Separate single-train-reference image per category | 4 category-specific runs | **No matched held-out test** |
@@ -201,6 +229,13 @@ Only 37 independent real source images were held out (5–15 per category); pool
 **Official crosswalk:** [Figures, numerical data and SHA-256 provenance](docs/IEEE_RESULTS_README_PROVENANCE_20261120.md) · [Code and Data Availability](docs/CODE_AND_DATA_AVAILABILITY_IEEE.md) · [All 24 internal training runs](results/all_24_runs.csv) · [All nine held-out model–seed evaluations](results/DFGAN_EndekGAN_real_matched_three_seeds.csv) · [TiPGAN statuses](results/TIPGAN_FOUR_CLASS_TRAINING_STATUS_20261120.csv).
 
 **Scientific scope:** results are presented for transparent reporting, not as proof of universal model superiority or certified textile production suitability.
+### 4.6 Final class-wise and diversity diagnostics (Figures 12–13)
+
+[Figure 12 — class-wise fidelity / boundary trade-off](figures/paper_IEEE_Access_720dpi_20261120/Fig_12_Endek_T2I_720dpi.png) and [Figure 13 — per-class LPIPS diversity across seeds](figures/paper_IEEE_Access_720dpi_20261120/Fig_13_Endek_T2I_720dpi.png) correspond to the final Section IV-G and IV-I of the paper. The proposed seam model consistently lowers one-pixel opposite-border mismatch in all twelve matched class–seed comparisons but loses fidelity and perceptual diversity. Figure 13's near-zero proposed LPIPS for seed 123 is a diagnostic warning, not conclusive proof of mode collapse.
+
+These regenerated 720-dpi panels are source-backed by [the underlying three-seed per-class observations](results/heldout_B_transformer_vs_seam_all3seeds_allclasses.csv). Refer to the figure package for the complete numbering and originality note.
+
+
 ## 5. Dataset adequacy and scientific gate
 
 **Do not submit as dataset sufficiency demonstrated.** The 1,280 Arm B training files correspond to **296 unique independent source images** (370 independent images across train/validation/test). Training augmentation and crops cannot replace additional independent observations. The held-out test has only 37 real images, with just 5–15 per class. The first manuscript was rejected, and the research team identified small dataset size as a central weakness. A new title or enhanced augmentation alone cannot establish independent-data generalization.

@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-20",
+  "account": "ardhanabdillah",
+  "experiment": "Arm A held-out no-retraining evaluation",
+  "source_kernel": "https://www.kaggle.com/code/ardhanabdillah/endek-v2-arma-heldout-evaluation-cpu",
+  "status": "COMPLETE",
+  "model_seed_runs": 6,
+  "run_keys": [
+    "transformer_seed42",
+    "transformer_seed123",
+    "transformer_seed2025",
+    "seam_proposed_seed42",
+    "seam_proposed_seed123",
+    "seam_proposed_seed2025"
+  ],
+  "generated_images": 1536,
+  "source_artifacts_verified": 1617,
+  "source_output_manifest_sha256": "c94c7201eea197652afe6f21c4fa1b8d60052707bb1aa6e4646000d3b346457d",
+  "missing_files": 0,
+  "mismatched_files": 0,
+  "repaired_files": 126,
+  "heldout_real_source_n": 37,
+  "heldout_synth_n_per_run": 256,
+  "training_source_n": 296,
+  "validation_source_n": 37,
+  "claims": [
+    "Pooled Arm B lower FID and KID: 6/6 model-seed comparisons",
+    "Class-wise Arm B lower FID and KID: 22/24 model-seed-category comparisons each"
+  ],
+  "limitations": [
+    "Source-level SHA256 equality cannot independently settle near-duplicate acquisition provenance",
+    "FID/KID small-sample and class-mix confounding",
+    "Different actual Arm A/B training budgets and CPU/GPU numerical environments",
+    "Missing independent expert cultural/prompt validation"
+  ]
+}
