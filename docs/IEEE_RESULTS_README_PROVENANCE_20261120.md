@@ -1,19 +1,24 @@
-# IEEE Results figure and table audit — 20 November 2026
+# IEEE Access manuscript results figure and table crosswalk (20 November 2026)
 
-Figures 6–11 are provisional manuscript numbering; existing file IDs are retained.
-All values in the main held-out table were recomputed from the nine completed model–seed evaluations and checked against internal and adapted DF-GAN summary CSVs.
-The test set contains 37 independent reference images; each model–seed run produced 256 generated samples.
-TiPGAN has train-only runs, not evaluated held-out metrics.
+These labels match the final Section IV numbering and the results inserted in the IEEE Access Word manuscript. Figures 1–5 are methodological diagrams/inputs. All panels 9–11 below are byte-identical copies of the saved figures used in the Word Section IV manuscript.
 
-| Proposed figure | Public repository file | SHA256 | Provenance |
+| Manuscript figure | Public exact image | SHA-256 | Experiment role |
 |---|---|---|---|
-| Fig. 6 | figures/fig23_ieee_results_four_metrics_3seeds.png | ebd4ff0c6caed7d8722a7032d1b440313a1e45cc3fa70010e01a1c5950fa658d | New chart derived from held-out CSV |
-| Fig. 7 | figures/fig24_ieee_results_seedwise_comparison.png | d4fad73a7e39e3e2be3f2eb23dc8a3a568915fa37cce7638d727fd88ca9ed5a4 | New chart derived from held-out CSV |
-| Fig. 8 | figures/fig09_matched_actual_generated_samples_seed42.png | 5c6814a44cc1f46cf1a6ff0737321fefe31b502748c7a6dbe1434f43f8d07c43 | Existing actual seed42 generated imagery |
-| Fig. 9 | figures/fig10_matched_2x2_tile_visualization_seed42.png | 10b6c370bd0aeb9ece85250b2ee077a024162676a901875dc606a0cb6f1da005 | Existing actual 2x2 generated tile evidence |
-| Fig. 10 | figures/fig14_actual_B_generated_motifs_3seed_comparison.png | 6f84746caf108a77d1d33ab88335248ce16b42a32314fcfc6d4a3edcad5f2c6d | Existing actual 3-seed generation imagery |
-| Fig. 11 | figures/fig21_preprocessing_A_B_validation_kid.png | 24e00f27a81f187af577193f92bd8034a5652f0c6469e881c57dfa0958b6d104 | Existing validation KID plot |
+| Fig. 6 | [Figure 6](../figures/fig21_preprocessing_A_B_validation_kid.png) | 24e00f27a81f187af577193f92bd8034a5652f0c6469e881c57dfa0958b6d104 | RQ1: checkpoint-validation KID (Arm A/B; not held-out) |
+| Fig. 7 | [Figure 7](../figures/fig23_ieee_results_four_metrics_3seeds.png) | ebd4ff0c6caed7d8722a7032d1b440313a1e45cc3fa70010e01a1c5950fa658d | RQ2: three-model held-out mean and sample SD |
+| Fig. 8 | [Figure 8](../figures/fig24_ieee_results_seedwise_comparison.png) | d4fad73a7e39e3e2be3f2eb23dc8a3a568915fa37cce7638d727fd88ca9ed5a4 | RQ2: three-model held-out per seed |
+| Fig. 9 | [Figure 9](../figures/fig25_ieee_actual_prompt_matched_three_models.png) | 95470800684e84c618b71d7e4525ce0cf6bf954a3d5dc95e73d95bd2c09cd8dd | Actual prompt-matched seed-42 generated samples (three models; four classes) |
+| Fig. 10 | [Figure 10](../figures/fig26_ieee_actual_2x2_tiling_three_models.png) | c9eafc4b905ece1e3cdf2938125337ab5f54a0ca7221f40a1724b9c8b80c29bf | Exact same generated images tiled two-by-two |
+| Fig. 11 | [Figure 11](../figures/fig27_ieee_tipgan_training_examples_only.png) | 88a52138683a32689de21b03bbf2fe74c63e094547a9d7c252cc2ecdec567052 | TiPGAN one-source image-conditioned training-only outputs |
 
-The five methodology figures are retained unchanged. No new original source photographs, captions or private weights were released.
-The pre-existing Figure 1 source-image montage requires public redistribution rights verification.
-The current DF-GAN Table IV status CSV was corrected: seed2025 held-out evaluation was completed and verified.
+| Manuscript table | Grounded source |
+|---|---|
+| Table V | [24 internal runs](../results/all_24_runs.csv) and [current evidence status](../results/EVIDENCE_STATUS.json) |
+| Table VI | [Arm A/B three-seed checkpoint-validation KID](../results/three_seed_checkpoint_validation_summary.csv) |
+| Table VII | [Nine matched model–seed tests](../results/DFGAN_EndekGAN_real_matched_three_seeds.csv) and independent summaries |
+| Table VIII | [Nine matched model–seed tests](../results/DFGAN_EndekGAN_real_matched_three_seeds.csv) |
+| Table IX | [Four TiPGAN train-only class statuses](../results/TIPGAN_FOUR_CLASS_TRAINING_STATUS_20261120.csv) |
+
+**Research integrity:** 37 independent held-out real sources. TiPGAN has no independent matched held-out FID/KID or text-adherence evidence. Fig. 9 uses fixed index 0 and verified same prompts but cannot guarantee identical latent vectors across architectures. Fig. 11 is train-only texture generation. All source photographs, private prompts, full logs and checkpoints remain outside the public repository.
+
+**Dataset rights:** publication of composite generated-image panels does not confer any rights to underlying original motif photographs. The limited original-source samples already present in methodological Fig. 1 require public redistribution permissions to be verified.

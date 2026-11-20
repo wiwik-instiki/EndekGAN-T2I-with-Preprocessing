@@ -92,38 +92,59 @@ The diagrams describe the **Methods** protocol, not a completed claim of benchma
 
 ## 4. IEEE Access results and comparative evaluation
 
-**Verified 20 November 2026.** This section displays the actual quantitative results and experiment-generated visual evidence intended for the Results and Discussion of the IEEE Access manuscript. Manuscript figure numbering **6–11 is provisional**, following Methods Figures 1–5. The stored source filenames may use earlier internal numbers.
+**Exact manuscript cross-reference (20 November 2026).** This section follows the numbering of Section IV in the IEEE Access Word manuscript: **Tables V–IX and Figures 6–11**. Figures 1–5 belong to the Methods section. All new qualitative panels are copied byte-for-byte from the actual figures inserted in the manuscript; older panels retained elsewhere in the repository are supplementary visualizations.
 
-### 4.1 Evaluation protocol and comparison scope
+### 4.1 Experimental coverage and evidence (Table V)
 
-Three text-and-class-conditioned models/controls were evaluated at training seeds **42, 123, and 2025**: proposed seam-regularized Endek T2I, its internal Transformer/no-seam control, and adapted DF-GAN–MiniLM. Every model–seed evaluation used the **same 37 independently sourced held-out test images** and **256 generated outputs**. Reported aggregate metrics are **mean ± sample standard deviation (SD) over the three training seeds**, not significance tests or 95% confidence intervals. The adapted DF-GAN uses a frozen multilingual MiniLM384 encoder instead of the canonical DAMSM-based configuration; its conditioning and latent representation differ from Endek T2I.
+Two research questions structure the comparison: RQ1 addresses source-aware crop augmentation under fixed original-image partitions; RQ2 quantifies border-consistency versus fidelity and diversity. The independent dataset is **296 training + 37 validation + 37 held-out test original source photographs**. Arm B contains 1,280 training views derived from 296 training sources; Arm A has 944 views from the same originals.
 
-### 4.2 Proposed model versus comparators: held-out evaluation
+**Table V. Experimental arms and availability of independent evaluation.**
 
-**Table III. Exploratory held-out synthesis fidelity, diversity, and boundary continuity (three seeds, mean ± SD).**
+| Experimental arm | Training exposure | Executed trainings | Held-out evaluation |
+|---|---|---|---|
+| Arm A (full-frame controls) | 944 derived train views, 296 original training sources | 2 settings × 3 seeds = 6 | Validation KID comparison only |
+| Arm B (crop enriched) | 1,280 derived train views, same 296 sources | 6 settings × 3 seeds = 18 | 6 matched held-out tests for no-seam/proposed |
+| Adapted DF-GAN–MiniLM | Source-grouped Endek set | 3 training seeds | 3 held-out tests, 37 real and 256 synthetic each |
+| TiPGAN image-conditioned | Separate single-train-reference image per category | 4 category-specific runs | **No matched held-out test** |
+
+The 24 Endek internal trainings do not mean 24 fully evaluated held-out tests. The four TiPGAN training fits cannot be inserted into text-conditioned FID/KID tables.
+
+### 4.2 RQ1 — Preprocessing and validation (Table VI; Fig. 6)
+
+Arm A full-frame preprocessing and Arm B crop-enriched preprocessing were evaluated with identical source-level train/validation/test partitions and three seeds. The numerical values are **checkpoint-validation KID** rather than held-out KID.
+
+**Table VI. Three-seed checkpoint-validation KID (mean ± sample SD).**
+
+| Configuration | Arm A validation KID ↓ | Arm B validation KID ↓ |
+|---|---:|---:|
+| Transformer / no-seam | 0.23041 ± 0.02673 | 0.12669 ± 0.06152 |
+| Endek T2I proposed (seam) | 0.24581 ± 0.01443 | 0.18445 ± 0.01369 |
+
+<p align="center"><a href="figures/fig21_preprocessing_A_B_validation_kid.png"><img src="figures/fig21_preprocessing_A_B_validation_kid.png" alt="Arm A and Arm B source-aware checkpoint-validation KID, the actual manuscript Figure 6" width="880"></a></p>
+
+*Fig. 6. Checkpoint-validation KID after source-aware preprocessing for the Arm A full-frame control and Arm B crop-enriched treatment; not an independent held-out test result.*
+
+### 4.3 RQ2 — Held-out comparison (Table VII; Fig. 7)
+
+For each of three training seeds (42, 123, 2025), the same 37 independent held-out real sources and 256 generated samples per model–seed were used to evaluate the proposed Endek T2I, its no-seam control and adapted DF-GAN–MiniLM. Results are **three-seed means ± sample SD**, not significance tests.
+
+**Table VII. Matched held-out synthesis fidelity, opposing-border continuity, and perceptual diversity (mean ± sample SD).**
 
 | Model | Pooled FID ↓ | Pooled KID ↓ | Opposite-border gap ↓ | LPIPS diversity ↑ |
 |---|---:|---:|---:|---:|
-| Transformer / no-seam | **254.474 ± 40.967** | **0.12848 ± 0.05458** | 0.08993 ± 0.01449 | 0.25630 ± 0.21681 |
-| Adapted DF-GAN–MiniLM | 265.696 ± 13.561 | 0.17703 ± 0.00625 | 0.10984 ± 0.01888 | **0.44268 ± 0.03472** |
-| **Endek T2I proposed (seam)** | 302.127 ± 5.459 | 0.19085 ± 0.00405 | **0.05338 ± 0.00120** | 0.03315 ± 0.04134 |
+| Transformer / no-seam | 254.474 ± 40.967 | 0.12848 ± 0.05458 | 0.08993 ± 0.01449 | 0.25630 ± 0.21681 |
+| Adapted DF-GAN–MiniLM | 265.696 ± 13.561 | 0.17703 ± 0.00625 | 0.10984 ± 0.01888 | 0.44268 ± 0.03472 |
+| **Endek T2I proposed (seam)** | 302.127 ± 5.459 | 0.19085 ± 0.00405 | 0.05338 ± 0.00120 | 0.03315 ± 0.04134 |
 
-**Table IV. Percentage change of proposed Endek T2I relative to each comparator (computed from held-out mean values).**
+The proposed model reduces mean opposing-border gap by **40.65%** relative to its no-seam control and **51.40%** relative to adapted DF-GAN–MiniLM, but it has worse pooled FID, KID and inter-sample LPIPS diversity. These outcomes document a **continuity–fidelity–diversity trade-off**, not universal superiority.
 
-| Proposed versus | FID change ↓ | KID change ↓ | Gap change ↓ | LPIPS-diversity change ↑ |
-|---|---:|---:|---:|---:|
-| Transformer / no-seam | +18.73% | +48.54% | -40.65% | -87.07% |
-| Adapted DF-GAN–MiniLM | +13.71% | +7.81% | -51.40% | -92.51% |
+<p align="center"><a href="figures/fig23_ieee_results_four_metrics_3seeds.png"><img src="figures/fig23_ieee_results_four_metrics_3seeds.png" alt="Actual manuscript Figure 7: mean and SD of four held-out metrics" width="880"></a></p>
 
-**Interpretation.** The proposed seam-regularized model reduces mean opposite-border gap by **40.65%** versus its no-seam control and **51.40%** versus adapted DF-GAN–MiniLM. However, its aggregated pooled FID and KID are higher, and LPIPS diversity is lower. This is a **continuity–fidelity–diversity trade-off**, not a claim of overall superiority. Values are exploratory because the test set contains only 37 independent real images.
+*Fig. 7. Exploratory three-seed held-out comparison of pooled FID, KID, opposite-border gap and LPIPS diversity for the proposed model and both comparators, with sample-SD bars.*
 
-<p align="center"><a href="figures/fig23_ieee_results_four_metrics_3seeds.png"><img src="figures/fig23_ieee_results_four_metrics_3seeds.png" alt="Actual experimental evidence for manuscript Figure 6" width="880"></a></p>
+### 4.4 Seed-wise comparisons (Table VIII; Fig. 8)
 
-*Fig. 6. Three-model comparison of pooled FID, pooled KID, opposite-border gap, and LPIPS diversity. Error bars denote sample SD over three independent training seeds, each evaluated with 37 real test references and 256 generated samples.*
-
-### 4.3 Per-seed results and stability
-
-**Table V. All nine independently trained model–seed held-out evaluations.**
+**Table VIII. All nine model–seed held-out results.**
 
 | Model | Seed | FID ↓ | KID ↓ | Border gap ↓ | LPIPS diversity ↑ |
 |---|---:|---:|---:|---:|
@@ -137,68 +158,47 @@ Three text-and-class-conditioned models/controls were evaluated at training seed
 | Endek T2I proposed (seam) | 123 | 307.406 | 0.19347 | 0.05295 | 0.00084 |
 | Endek T2I proposed (seam) | 2025 | 296.505 | 0.18618 | 0.05473 | 0.01888 |
 
-The seam gap is smaller for the proposed model than the no-seam internal control at **every evaluated seed**. FID/KID and LPIPS outcomes fluctuate across seeds, so aggregate comparisons should not be construed as consistent per-seed improvements. Different model architectures may also use differently dimensioned latent vectors even when the same random-number seed is specified.
+<p align="center"><a href="figures/fig24_ieee_results_seedwise_comparison.png"><img src="figures/fig24_ieee_results_seedwise_comparison.png" alt="Actual manuscript Figure 8: four metrics per seed" width="880"></a></p>
 
-<p align="center"><a href="figures/fig24_ieee_results_seedwise_comparison.png"><img src="figures/fig24_ieee_results_seedwise_comparison.png" alt="Actual experimental evidence for manuscript Figure 7" width="880"></a></p>
+*Fig. 8. Per-seed held-out FID, KID, border gap and LPIPS diversity for Transformer/no-seam, adapted DF-GAN–MiniLM, and proposed Endek T2I.*
 
-*Fig. 7. Seed-wise FID, KID, opposite-border gap, and LPIPS diversity for the actual matched test evaluations of no-seam, adapted DF-GAN–MiniLM, and proposed Endek T2I. Each point represents one model–seed evaluation.*
+### 4.5 Actual generated Endek samples (Figs. 9 and 10)
 
-### 4.4 Actual generated motifs and tiling evidence
+The next two panels are identical to the **actual model-generated outputs and two-by-two tile visualizations embedded in the Word manuscript**. Flora, Fauna, Decorative, and Geometric rows are compared at seed 42 using a fixed within-class index of 0, with verified prompt matches across model outputs. The samples illustrate qualitative texture, not blinded cultural/semantic expert certification.
 
-The following panels are **existing images generated by the actual experiments** and already tracked in this repository, rather than newly fabricated or retouched visual examples. They illustrate qualitative texture and boundary appearance; neither semantic prompt fidelity nor Balinese textile authenticity has been independently expert-certified.
+<p align="center"><a href="figures/fig25_ieee_actual_prompt_matched_three_models.png"><img src="figures/fig25_ieee_actual_prompt_matched_three_models.png" alt="Actual manuscript Figure 9: generated comparison images for proposed, no-seam and adapted DF-GAN" width="880"></a></p>
 
-<p align="center"><a href="figures/fig09_matched_actual_generated_samples_seed42.png"><img src="figures/fig09_matched_actual_generated_samples_seed42.png" alt="Actual experimental evidence for manuscript Figure 8" width="880"></a></p>
-
-*Fig. 8. Matched qualitative examples of motifs generated by the evaluated models using seed 42. Visual samples illustrate the experimental outputs, not a statistically representative superiority claim.*
+*Fig. 9. Actual matched seed-42 Endek outputs from Transformer/no-seam, proposed seam-regularized Endek T2I and adapted DF-GAN–MiniLM, with the same text prompt and index in all four motif categories.*
 
 
-<p align="center"><a href="figures/fig10_matched_2x2_tile_visualization_seed42.png"><img src="figures/fig10_matched_2x2_tile_visualization_seed42.png" alt="Actual experimental evidence for manuscript Figure 9" width="880"></a></p>
+<p align="center"><a href="figures/fig26_ieee_actual_2x2_tiling_three_models.png"><img src="figures/fig26_ieee_actual_2x2_tiling_three_models.png" alt="Actual manuscript Figure 10: periodic 2x2 tiling of matched generated images" width="880"></a></p>
 
-*Fig. 9. Two-by-two repetition of generated motif tiles for visual inspection of edge discontinuities. Repeated-tile appearance complements but does not replace numerical opposite-border gap measurements.*
+*Fig. 10. Two-by-two periodic tiling of the same fixed-index images shown in Fig. 9, illustrating opposite-edge appearance without claiming an additional quantitative tileability experiment.*
 
+### 4.6 TiPGAN reference: training only (Table IX; Fig. 11)
 
-<p align="center"><a href="figures/fig14_actual_B_generated_motifs_3seed_comparison.png"><img src="figures/fig14_actual_B_generated_motifs_3seed_comparison.png" alt="Actual experimental evidence for manuscript Figure 10" width="880"></a></p>
+TiPGAN is **image-conditioned** and trained using a **single TRAIN-source reference image per class**. It is not a text-conditioned competitor under the matched evaluation protocol.
 
-*Fig. 10. Actual generated examples of Endek motif synthesis across three independent training seeds. Visual diversity is illustrated qualitatively; cultural authenticity and text adherence have not been established by an independent expert panel.*
+**Table IX. Verified TiPGAN single-reference training outcomes; no independent evaluation.**
 
-### 4.5 Preprocessing A/B ablation — validation metric only
+| Motif class | Platform | Terminal iterations / maximum | Training status |
+|---|---|---:|---|
+| Flora | Kaggle | 50000 / 50000 | Finished |
+| Fauna | local GPU | 50000 / 50000 | Finished |
+| Decorative | local GPU | 50000 / 50000 | Finished |
+| Geometric | Kaggle | 48000 / 50000 | Early Stopped |
 
-Arm A contained **944 training views**, whereas Arm B added **336 training-only crop views** for **1,280 records**. Both arms derive from the same **296 independent training source images**, and augmentation does not increase the independent population. The KID values below are from **validation/checkpoint selection**, not held-out test performance.
+<p align="center"><a href="figures/fig27_ieee_tipgan_training_examples_only.png"><img src="figures/fig27_ieee_tipgan_training_examples_only.png" alt="Actual manuscript Figure 11: four category-specific train-only TiPGAN samples" width="880"></a></p>
 
-**Table VI. Checkpoint-validation KID under preprocessing Arm A and Arm B (three seed mean ± SD).**
+*Fig. 11. Actual image-conditioned TiPGAN training samples from four single-source runs. The geometric visual sample is from iteration 47,500, with a final checkpoint at iteration 48,000; these are not held-out text-conditioned evaluations.*
 
-| Model | Arm A validation KID ↓ | Arm B validation KID ↓ |
-|---|---:|---:|
-| Transformer / no-seam | 0.23041 ± 0.02673 | 0.12669 ± 0.06152 |
-| Endek T2I proposed (seam) | 0.24581 ± 0.01443 | 0.18445 ± 0.01369 |
+### 4.7 Validity boundaries, release restrictions, and paper alignment
 
-<p align="center"><a href="figures/fig21_preprocessing_A_B_validation_kid.png"><img src="figures/fig21_preprocessing_A_B_validation_kid.png" alt="Actual experimental evidence for manuscript Figure 11" width="880"></a></p>
+Only 37 independent real source images were held out (5–15 per category); pooled FID and KID remain exploratory. Crop prompts and expert cultural/weaving assessments remain unverified. Full training data, private source-to-prompt manifests and model weights are **not publicly included**. The public release includes selected actual generated figures from the manuscript, but not the original source-image dataset; selected source images already present in methodological Fig. 1 remain subject to redistribution-rights review.
 
-*Fig. 11. Comparison of validation KID between the Arm A full-frame control and the Arm B crop-enriched treatment. This is not an independent held-out test figure.*
+**Official crosswalk:** [Figures, numerical data and SHA-256 provenance](docs/IEEE_RESULTS_README_PROVENANCE_20261120.md) · [Code and Data Availability](docs/CODE_AND_DATA_AVAILABILITY_IEEE.md) · [All 24 internal training runs](results/all_24_runs.csv) · [All nine held-out model–seed evaluations](results/DFGAN_EndekGAN_real_matched_three_seeds.csv) · [TiPGAN statuses](results/TIPGAN_FOUR_CLASS_TRAINING_STATUS_20261120.csv).
 
-### 4.6 TiPGAN external reference — training status, not a comparable test
-
-The TiPGAN reference is **image-conditioned**, using one TRAIN-source reference photograph per class. It is not text-to-image synthesis and the four experimental runs are separate single-image texture fits, not one multi-class model. They have **no independently evaluated held-out FID/KID, LPIPS, text-adherence, or tileability scores**. TiPGAN must not be inserted as an extra row of Table III.
-
-**Table VII. Verified TiPGAN class-wise training completion (no independent held-out evaluation).**
-
-| Motif class | Platform | Iterations completed / maximum | Terminal state | Independent test |
-|---|---|---:|---|---|
-| Flora | Kaggle | 50000 / 50000 | Finished | **Not performed** |
-| Fauna | local GPU | 50000 / 50000 | Finished | **Not performed** |
-| Decorative | local GPU | 50000 / 50000 | Finished | **Not performed** |
-| Geometric | Kaggle | 48000 / 50000 | Early Stopped | **Not performed** |
-
-Geometric ended through **train-only early stopping at 48,000 iterations**, using an L1/style/histogram training proxy (not independent validation); Flora, Fauna, and Decorative completed 50,000 iterations. All four terminal checkpoints were checked and archived privately. Further matched held-out and human-expert evaluations are necessary before TiPGAN can support a quantitative quality comparison.
-
-### 4.7 Research integrity and reproducibility
-
-The held-out reference population has only **37 independent real images** (5–15 per motif class); pooled FID/KID estimates are exploratory. Validation and test measurements are not interchangeable. Different conditioning modalities/encoders, unverified prompt semantics, missing blinded cultural-authenticity assessment, and the limitations of a small reference set constrain interpretation. Neither improvement in boundary continuity nor training completion alone establishes text adherence, perceptual quality, or cultural authenticity.
-
-**Inspect sources:** [all 24 internal runs](results/all_24_runs.csv) · [all nine model–seed tests](results/DFGAN_EndekGAN_real_matched_three_seeds.csv) · [internal held-out summary](results/heldout_B_3seeds_mean_sd.csv) · [adapted DF-GAN held-out summary](results/DFGAN_V2_real_heldout_mean_sd.csv) · [checkpoint-validation KID](results/three_seed_checkpoint_validation_summary.csv) · [TiPGAN training status](results/TIPGAN_FOUR_CLASS_TRAINING_STATUS_20261120.csv) · [figure and source audit](docs/IEEE_RESULTS_README_PROVENANCE_20261120.md).
-
-**Manuscript status:** These are actual observed results prepared for reporting, **not** evidence of confirmed IEEE Access acceptance or submission readiness. Complete the independent semantic/expert assessment and dataset adequacy studies before strong publication claims.
-
+**Scientific scope:** results are presented for transparent reporting, not as proof of universal model superiority or certified textile production suitability.
 ## 5. Dataset adequacy and scientific gate
 
 **Do not submit as dataset sufficiency demonstrated.** The 1,280 Arm B training files correspond to **296 unique independent source images** (370 independent images across train/validation/test). Training augmentation and crops cannot replace additional independent observations. The held-out test has only 37 real images, with just 5–15 per class. The first manuscript was rejected, and the research team identified small dataset size as a central weakness. A new title or enhanced augmentation alone cannot establish independent-data generalization.
@@ -212,7 +212,7 @@ Current figures and tables are **V2 exploratory evidence only**, not final expan
 1. **The earlier EndekGAN-T2I architecture already included multilingual text conditioning and seam loss.** This study must not claim to invent these components. Additional architectural novelty requires real code and ablation evidence.
 2. Validation KID and held-out FID/KID are fundamentally different; figures/tables keep them separate. FID/KID with 37 independent real reference images are exploratory.
 3. No manual text-prompt/crop-semantic approval or blinded cultural-authenticity panel has been completed. No actual weaving reproducibility is verified.
-4. The public repository intentionally omits real Endek photographs, confidential prompts, private source manifests with machine-local paths, heavyweight checkpoints and credentials. They remain on the authorized laptop/Kaggle private storage.
+4. The public repository intentionally omits the complete original Endek photograph dataset, confidential prompts, private source manifests with machine-local paths, heavyweight checkpoints and credentials; the limited source-derived manuscript Figure 1 montage already visible here is subject to public redistribution-rights review. They remain on the authorized laptop/Kaggle private storage.
 5. **Target journal:** IEEE Access. The material is research evidence and a manuscript preparation base, **not yet submission-ready**. The provisional title may change to reflect verified results.
 
 [Source bibliography](docs/PRIMARY_AND_SECONDARY_REFERENCES.bib) · [Reference-to-novelty framework](docs/REFERENCE_NOVELTY_BASELINE_PROTOCOL.md) · [IEEE Access evidence audit](results/EVIDENCE_STATUS_IEEE_ACCESS_20261117.json).
