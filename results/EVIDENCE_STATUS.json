@@ -1,5 +1,5 @@
 {
-  "status": "TRAINING_COMPLETE_TEST_PARTIAL",
+  "status": "INTERNAL_TRAINING_COMPLETE_NINE_MATCHED_HELDOUT_EVALUATIONS_AVAILABLE",
   "training_runs": 24,
   "checkpoints_verified": 24,
   "unique_raw_images": 370,
@@ -23,7 +23,7 @@
   "DFGAN_V2_test": "THREE_SEEDS_HELDOUT_EVALUATION_COMPLETE",
   "test_metrics_status": "EXPLORATORY_ONLY",
   "raw_images_published": false,
-  "paper_readiness": "INCOMPLETE_EXTERNAL_BASELINES_AND_MULTI_SEED_TESTS",
+  "paper_readiness": "INCOMPLETE_CULTURAL_VALIDATION_TIPGAN_HELDOUT_AND_REPRODUCIBILITY",
   "B_transformer_and_seam_three_seed_test_complete": true,
   "caution": "All FID/KID test scores exploratory: just 37 independent reference images.",
   "DFGAN_V2_training_seeds_verified": [
@@ -64,5 +64,9 @@
     ],
     "independent_test_metrics": false,
     "train_only_early_stop_proxy_is_validation": false
-  }
+  },
+  "matched_heldout_text_conditioned_model_seed_evaluations": 9,
+  "source_data_publicly_released": false,
+  "checkpoints_publicly_released": false,
+  "code_and_data_availability_doc": "docs/CODE_AND_DATA_AVAILABILITY_IEEE.md"
 }
