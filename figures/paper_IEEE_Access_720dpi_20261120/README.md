@@ -23,3 +23,5 @@ All 13 figures correspond to the November 20, 2026 manuscript and contain no pri
 - [Fig. 13: Per-class LPIPS diversity diagnostics](Fig_13_Endek_T2I_720dpi.png)
 
 See [FIGURE_MANIFEST.csv](FIGURE_MANIFEST.csv) for dimensions, sources and SHA-256 checksums.
+
+**Figure 12 axis parity:** Horizontal FID/KID (lower better), vertical opposing-border gap (lower better), matching the manuscript. Arrows connect the no-seam circle with the proposed square. This is the class-wise held-out plot, not the supplementary 1/4/8-pixel check.

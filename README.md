@@ -38,6 +38,22 @@ All **13 manuscript figures** are indexed in the [720-dpi figure package](figure
 
 Full private source images, prompt-linked metadata, all checkpoints and source-level provenance remain excluded from the public release. Research figures and aggregate results support auditability, not unaided full training replication. **Do not use the earlier EndekGAN-T2I repository as the evidence source for this study.**
 
+### Post hoc boundary-width and fixed-latent checks (Supplementary RQ2 evidence)
+
+These checks were run *after* review of the primary results, without retraining or selecting new checkpoints on the test set. They are **exploratory** and were not the prespecified RQ outcomes.
+
+| RGB opposing-border width | No-seam gap ↓ | Proposed gap ↓ | Proposed lower across 12 class–seed cells |
+|---|---:|---:|---:|
+| 1 px | 0.08993 | 0.05338 | 12/12 |
+| 4 px | 0.10825 | 0.05643 | 12/12 |
+| 8 px | 0.10582 | 0.08940 | 9/12 |
+
+All 1,536 held-out Arm B generated images were checked. The 1-pixel recomputation agreed with previously recorded values. The extended metric is the mean aligned left/right and top/bottom strip RGB-L1 discrepancy, not a complete perception-based tileability measure.
+
+A second inference-only intervention used the two existing model variants, all three seeds and four categories, three single-attribute changes (color, layout, technique), and four matched latent vectors: **288 fixed-latent prompt pairs**. Mean no-seam versus proposed image RMSE was **0.01222 / 0.00443** (color), **0.00488 / 0.00159** (layout), and **0.01383 / 0.00510** (technique). A crude unvalidated color-direction rule passed **12/48** no-seam versus **27/48** proposed pairs. These figures show responsiveness to text changes, not verified semantics, accurate ornament identity, or cultural acceptance.
+
+The quantitative summaries are available in [band-width pooled results](results/BAND_GAP_POOLED_1_4_8_20261120.csv), [paired class–seed strip-width results](results/BAND_GAP_PAIRED_12CELLS_20261120.csv), and [counterfactual summary](results/PROMPT_FIXED_LATENT_SUMMARY_20261120.csv). No source-linked prompt texts, complete private dataset, or training checkpoints have been added to the public release.
+
 ## Code and data availability (IEEE Access)
 
 See the [manuscript-aligned availability statement and evidence map](docs/CODE_AND_DATA_AVAILABILITY_IEEE.md). This public release contains research scripts, sanitized notebooks, aggregate source counts, three-seed numerical results and selected images. The **complete private Endek source dataset, derived training views, source-linked prompt metadata, full logs and trained checkpoints are not released**, so full training cannot be reproduced from public files alone. The source-image montage already visible in Figure 1 requires public redistribution-rights verification.

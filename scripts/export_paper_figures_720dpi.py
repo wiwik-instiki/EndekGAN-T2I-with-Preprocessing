@@ -56,13 +56,13 @@ plt.rcParams.update({'font.size':8,'axes.titlesize':9})
 fig,axes=plt.subplots(1,2,figsize=(7,2.8),layout='constrained')
 for ax,col in zip(axes,['FID','KID']):
  for cat,color in zip(cats,colors):
-  a=(m('transformer',cat,'seam_gap'),m('transformer',cat,col))
-  b=(m('seam_proposed',cat,'seam_gap'),m('seam_proposed',cat,col))
+  a=(m('transformer',cat,col),m('transformer',cat,'seam_gap'))
+  b=(m('seam_proposed',cat,col),m('seam_proposed',cat,'seam_gap'))
   ax.annotate('',xy=b,xytext=a,arrowprops={'arrowstyle':'->','color':color,'lw':1.4})
   ax.scatter(*a,color=color,marker='o',s=20,label=cat.title())
   ax.scatter(*b,facecolors='none',edgecolors=color,marker='s',s=25)
- ax.set_xlabel('Opposing-edge gap (lower better)')
- ax.set_ylabel(col+' (lower better)');ax.set_title(col+' / border trade-off');ax.grid(alpha=.25)
+ ax.set_xlabel(col+' (lower better)')
+ ax.set_ylabel('Opposing-edge gap (lower better)');ax.set_title(col+' / border trade-off');ax.grid(alpha=.25)
 axes[0].legend(fontsize=6,loc='best')
 fig.suptitle('Class-wise fidelity and border continuity (three-seed means)',fontsize=10)
 dest=O/'Fig_12_Endek_T2I_720dpi.png';fig.savefig(dest,dpi=720);plt.close(fig)
@@ -91,6 +91,6 @@ lines=['# IEEE Access Endek T2I: Figure package (720 dpi)','',
 '**Rights and scope.** Figure 1 shows already-public original-source textile samples; publication rights still need author confirmation. Figure 11 contains image-conditioned training-only results, not held-out text-to-image tests. Neither figure set is artisan-certified.','',
 '## Figure index','']
 for x in meta:lines.append(f"- [Fig. {x['figure']}: {x['caption']}]({x['file']})")
-lines+=['','See [FIGURE_MANIFEST.csv](FIGURE_MANIFEST.csv) for dimensions, sources and SHA-256 checksums.']
+lines+=['','See [FIGURE_MANIFEST.csv](FIGURE_MANIFEST.csv) for dimensions, sources and SHA-256 checksums.','','**Figure 12 axis parity:** Horizontal FID/KID (lower better), vertical opposing-border gap (lower better), matching the manuscript. Arrows connect the no-seam circle with the proposed square. This is the class-wise held-out plot, not the supplementary 1/4/8-pixel check.']
 (O/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
 print(json.dumps({'figure_count':len(meta),'folder':str(O),'max_bytes':max((O/x['file']).stat().st_size for x in meta),'source_dpi_below_600':sum(isinstance(x['source_px_per_paper_in'],float) and x['source_px_per_paper_in']<600 for x in meta)},indent=2))
