@@ -47,6 +47,8 @@ The primary manuscript workflow is **Fig. 2** above. For additional quantitative
 
 **Tables:** [Class and partition counts](tables/TABLE_01_PREPROCESSED_CLASS_DISTRIBUTION.csv), [stage counts](tables/TABLE_02_PREPROCESSING_STAGE_COUNTS.csv). [Dataset methods](docs/DATASET_PREPROCESSED_IEEE_20261117.md). [Complete figure/table explanations](docs/VISUAL_REPORT_PREPROCESSING_AND_EVALUATION.md).
 
+**Section III Methods evidence audit (20 November 2026):** [Near-duplicate screening, baseline fairness and exact metric definitions](docs/METHODS_AUDIT_NEAR_DUPLICATE_FAIRNESS_METRICS_20261120.md). The one flagged train–validation pair appears to be different images following visual review, but independent physical acquisition remains unverified. External DF-GAN is task/data matched, not architecture/optimizer/compute matched. Pooled FID/KID also reflect unequal class distributions (37 unbalanced real references vs. 256 balanced generated outputs), so the results remain exploratory.
+
 <!-- BEGIN IEEE ACCESS METHODOLOGY FIGURES 1-5 -->
 ## 3. IEEE Access manuscript figures (Figs. 1–5)
 
